@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Changos Consumidor</string>
+
+    <string name="title_activity_splash_screen">SplashScreen</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="titleCategories">Categorías</string>
 </resources>
