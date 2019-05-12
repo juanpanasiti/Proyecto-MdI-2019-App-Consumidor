@@ -3,32 +3,24 @@ package com.example.changosconsumidor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
+
+import com.example.changosconsumidor.database.CategoryDBHelper;
 
 public class CategoryActivity extends AppCompatActivity {
-    private ListView lvCategories;
-
-    private String category_names[] = {};
-    private String category_ids[] = {};
+    TextView tvTest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
 
-        lvCategories = findViewById(R.id.lvCategories);
+        tvTest = findViewById(R.id.tvTest);
+        tvTest.setText("Registros: " + CategoryDBHelper.countCategories(this));
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item_categories, category_names);
-        lvCategories.setAdapter(adapter);
+    }//onCreate()
 
-        lvCategories.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(CategoryActivity.this, "Seleccionado: " + lvCategories.getItemAtPosition(position), Toast.LENGTH_SHORT).show();
-            }
-        });
+    public void volver(View v){
+        this.finish();
     }
 }

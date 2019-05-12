@@ -2,6 +2,7 @@ package com.example.changosconsumidor.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.changosconsumidor.modelo.Category;
@@ -21,7 +22,7 @@ public class CategoryDBHelper {
     public static boolean createCategory(Category category, Context context){
         boolean created = false;
         String name = category.getName();
-        String father = category.getFatherID();
+        int father = category.getFatherID();
 
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(context, DB_NAME, null, 1);
         SQLiteDatabase db = admin.getWritableDatabase();
@@ -32,5 +33,14 @@ public class CategoryDBHelper {
 
         db.insert(DB_TABLE, null, registro);
         return created;
-    }
-}
+    }//createCategory()
+
+    //Consulta cantidad de registros
+    public static int countCategories(Context context){
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(context, DB_NAME, null, 1);
+        SQLiteDatabase db = admin.getReadableDatabase();
+
+        Cursor c = db.query("categories", null, null, null, null, null, null);
+        return c.getCount();
+    }//countCategories()
+}//CLASS
