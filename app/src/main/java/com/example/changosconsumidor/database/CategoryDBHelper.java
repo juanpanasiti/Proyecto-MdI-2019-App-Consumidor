@@ -86,6 +86,50 @@ public class CategoryDBHelper {
         }//try-catch
     }//createCategory()
 
+    /*
+    //Update data into table
+    public void updateData(Student student){
+        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteStatement stmt = db.compileStatement("UPDATE student_info SET name=?, age=?, class_name=?, city=? "+
+                "WHERE id = ?");
+        stmt.bindString(1, student.getName());
+        stmt.bindLong(2, student.getAge());
+        stmt.bindString(3, student.getClassName());
+        stmt.bindString(4, student.getCity());
+        stmt.bindLong(5, student.getId());
+        stmt.execute();
+        stmt.close();
+        db.close();
+    }
+    */
+    //Actualizar un registro de categoría
+    public static boolean updateCategory(Category cat, Context context){
+        String name = cat.getName();
+        int fatherID = cat.getFatherID();
+
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(context);
+        SQLiteDatabase db = admin.getWritableDatabase();
+
+        SQLiteStatement stmt = db.compileStatement("UPDATE " + DB_TABLE + " SET name=?, fatherID=?" + "WHERE id = ?");
+
+        stmt.bindString(1, name);
+        if(fatherID < 1){
+            stmt.bindNull(2);
+        } else {
+            stmt.bindLong(2,fatherID);
+        }//if-else
+        try{
+            stmt.execute();
+            stmt.close();
+            db.close();
+            Toast.makeText(context, "Categoría " + name + " actualizada.", Toast.LENGTH_SHORT).show();
+            return true;
+        }catch(Exception e){
+            Toast.makeText(context, "Error al actualizar la categoría: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }//updateCategory()
+
     //Consulta cantidad de registros
     public static int countCategories(Context context){
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(context);
