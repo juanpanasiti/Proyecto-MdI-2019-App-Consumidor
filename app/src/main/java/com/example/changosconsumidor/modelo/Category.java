@@ -10,9 +10,16 @@ public class Category {
     public Category(String name){
         this.name = name;
     }
+    public Category(){
+
+    }
 
     public String getName(){
         return this.name;
+    }
+
+    public void setName(String name){
+        this.name = name;
     }
 
     public int getFatherID(){

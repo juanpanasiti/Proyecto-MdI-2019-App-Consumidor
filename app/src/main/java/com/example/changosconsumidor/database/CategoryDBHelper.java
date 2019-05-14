@@ -9,6 +9,9 @@ import android.widget.Toast;
 
 import com.example.changosconsumidor.modelo.Category;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CategoryDBHelper {
     private static final String DB_NAME = "database";//nombre de la base de datos
     private static final String DB_TABLE = "categories";//nombre de la tabla
@@ -129,6 +132,59 @@ public class CategoryDBHelper {
             return false;
         }
     }//updateCategory()
+
+    /*
+    //Select all data from the table
+	public List getStudents() {
+		List students = new ArrayList();
+		SQLiteDatabase db = this.getWritableDatabase();
+		String query = "SELECT id, name, age, class_name, city from student_info ORDER BY id ASC";
+		Cursor cursor = db.rawQuery(query, null);
+		while (cursor.moveToNext()) {
+			Student std = new Student();
+			std.setId(cursor.getInt(0));
+			std.setName(cursor.getString(1));
+			std.setAge(cursor.getInt(2));
+			std.setClassName(cursor.getString(3));
+			std.setCity(cursor.getString(4));
+			students.add(std);
+		}
+		db.close();
+		return students;
+	}
+    */
+
+    public static ArrayList<Category> getCategories(Context context) {
+        ArrayList<Category> categories = new ArrayList<>();
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(context);
+        SQLiteDatabase db = admin.getReadableDatabase();//Acceso de solo lectura a la BD
+        String query = "SELECT name FROM " + DB_TABLE + " ORDER BY name ASC";
+        Cursor cursor = db.rawQuery(query,null);
+        while (cursor.moveToNext()){
+            Category cat = new Category();
+            cat.setName(cursor.getString(0));
+            categories.add(cat);
+        }
+        db.close();
+        return categories;
+    }//getCategories()
+
+    public static ArrayList<Category> getAll(Context context){
+        ArrayList<Category> categories = new ArrayList<>();
+        String[] columns = {"name"};
+
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(context);
+        SQLiteDatabase db = admin.getReadableDatabase();//Acceso de solo lectura a la BD
+
+        Cursor c = db.query(DB_TABLE,columns,null,null,null,null,"name");
+        while (c.moveToNext()){
+            Category cat = new Category();
+            cat.setName(c.getString(0));
+            categories.add(cat);
+        }
+        db.close();
+        return categories;
+    }
 
     //Consulta cantidad de registros
     public static int countCategories(Context context){
