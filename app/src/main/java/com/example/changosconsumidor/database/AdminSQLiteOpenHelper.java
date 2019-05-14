@@ -14,6 +14,7 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
     //V. globales
     private static int DB_VERSION = 1;
     private static String DB_FILE_NAME = "changosdb";
+
     public AdminSQLiteOpenHelper(Context context) {
         super(context, DB_FILE_NAME, null, DB_VERSION);
     }
