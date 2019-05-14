@@ -186,6 +186,34 @@ public class CategoryDBHelper {
         return categories;
     }
 
+    //Delete data from the table for the given id
+    /*
+    public void deleteData(int stdId){
+        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteStatement stmt = db.compileStatement("DELETE FROM student_info WHERE id = ?");
+        stmt.bindLong(1, stdId);
+        stmt.execute();
+        stmt.close();
+        db.close();
+    }
+    */
+    public static void deleteCategory(int catID, Context context){
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(context);
+        SQLiteDatabase db = admin.getWritableDatabase();
+        SQLiteStatement stmt = db.compileStatement("DELETE FROM " + DB_TABLE + " WHERE id = ?");
+        stmt.bindLong(1,catID);
+        try{
+            stmt.execute();
+            stmt.close();
+            db.close();
+            Toast.makeText(context, "Categoría eliminada correctamente.", Toast.LENGTH_SHORT).show();
+        }catch(Exception e){
+            stmt.close();
+            db.close();
+            Toast.makeText(context, "Error al eliminar: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }//deleteCategory()
+
     //Consulta cantidad de registros
     public static int countCategories(Context context){
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(context);

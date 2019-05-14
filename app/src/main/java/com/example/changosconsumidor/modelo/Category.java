@@ -3,6 +3,7 @@ package com.example.changosconsumidor.modelo;
 import java.util.ArrayList;
 
 public class Category {
+    private int id;
     private String name;
     private Category father;
     private ArrayList<Product> products;
@@ -12,6 +13,10 @@ public class Category {
     }
     public Category(){
 
+    }
+
+    public int getId(){
+        return this.id;
     }
 
     public String getName(){
