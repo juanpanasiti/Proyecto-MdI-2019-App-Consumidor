@@ -31,6 +31,10 @@ public class Category {
         return 0;
     }
 
+    public void setFather(Category father){
+        this.father = father;
+    }
+
     ///Consultas a la base de datos
     public static ArrayList<Category> all(){
         ArrayList<Category> categories = new ArrayList<>();

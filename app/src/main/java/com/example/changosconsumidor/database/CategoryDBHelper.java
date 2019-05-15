@@ -214,6 +214,36 @@ public class CategoryDBHelper {
         }
     }//deleteCategory()
 
+    //Select data for the given id
+    /*
+    public Student getStudentById(int stdId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT id, name, age, class_name, city FROM student_info WHERE id = ?";
+        Cursor cursor = db.rawQuery(query, new String[] {String.valueOf(stdId)});
+        cursor.moveToFirst();
+        Student std = new Student();
+        std.setId(cursor.getInt(0));
+        std.setName(cursor.getString(1));
+        std.setAge(cursor.getInt(2));
+        std.setClassName(cursor.getString(3));
+        std.setCity(cursor.getString(4));
+        db.close();
+        return std;
+    }
+    */
+    public Category getCategory(int catID, Context context){
+        Category category = new Category();
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(context);
+        SQLiteDatabase db = admin.getReadableDatabase();
+        String query = "SELECT id, name, father FROM " + DB_TABLE + " WHERE id = ?";
+        Cursor cursor = db.rawQuery(query,null);
+        cursor.moveToFirst();
+        //category.setID(cursor.getInt(0);
+        category.setName(cursor.getString(1));
+        if(cursor.getInt(2) > 0)
+            category.setFather(this.getCategory(cursor.getInt(2),context));
+        return category;
+    }//getCategory()
     //Consulta cantidad de registros
     public static int countCategories(Context context){
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(context);
