@@ -5,4 +5,10 @@
     <color name="colorAccent">#D81B60</color>
 
     <color name="black_overlay">#66000000</color>
+
+    <color name="menu">#6B609A</color>
+    <color name="letraOscura">#223464</color>
+
+
+
 </resources>

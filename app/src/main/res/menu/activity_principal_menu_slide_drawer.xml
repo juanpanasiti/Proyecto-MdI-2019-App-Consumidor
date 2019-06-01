@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group
+        android:id="@+id/grupoPrincipal"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/home"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/home" />
+        <item
+            android:id="@+id/miLista"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/miLista" />
+        <item
+            android:id="@+id/configuracion"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/configuracion" />
+        <item
+            android:id="@+id/cerrarSesion"
+            android:icon="@drawable/ic_menu_send"
+            android:title="@string/cerrarSesion" />
+    </group>
+
+    <item
+        android:id="@+id/categorias"
+        android:title="@string/categorias">
+        <menu>
+            <item
+                android:id="@+id/almacen"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/almacen" />
+            <item
+                android:id="@+id/alimentosSinTacc"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/alimentosSinTacc" />
+            <item
+                android:id="@+id/bebidas"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/bebidas" />
+            <item
+                android:id="@+id/carnesCongeladosFrios"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/carnesCongeladosFrios" />
+            <item
+                android:id="@+id/higieneBelleza"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/higieneBelleza" />
+            <item
+                android:id="@+id/limpiezaHogar"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/limpiezaHogar" />
+            <item
+                android:id="@+id/mascotas"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/mascotas" />
+        </menu>
+    </item>
+
+</menu>
