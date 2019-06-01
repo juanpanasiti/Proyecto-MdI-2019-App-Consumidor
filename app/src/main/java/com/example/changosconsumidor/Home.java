@@ -14,6 +14,7 @@ public class Home extends AppCompatActivity {
     }
 
     public void aCategorias(View v){
+        //Ir al Activity Categories
         Intent intent = new Intent(this, CategoryActivity.class);
         startActivity(intent);
     }
