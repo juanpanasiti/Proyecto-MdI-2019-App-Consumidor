@@ -1,4 +1,4 @@
-package com.example.changosconsumidor.modelo;
+package com.example.changosconsumidor.model;
 
 public class Item {
     private Product product;

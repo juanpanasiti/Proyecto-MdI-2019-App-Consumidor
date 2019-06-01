@@ -1,4 +1,4 @@
-package com.example.changosconsumidor.modelo;
+package com.example.changosconsumidor.model;
 
 import java.util.ArrayList;
 import java.util.Date;

@@ -7,13 +7,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import android.widget.Toast;
 
-import com.example.changosconsumidor.modelo.Category;
+import com.example.changosconsumidor.model.Category;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
-public class CategoryDBHelper {
-    private static final String DB_NAME = "database";//nombre de la base de datos
+public class CategoryDBHelper extends AdminSQLiteOpenHelper{
     private static final String DB_TABLE = "categories";//nombre de la tabla
     //Columnas DB:          id int, name text, father int
     //Atributos Model:      name String, father Category, products ArrayList
@@ -23,115 +22,63 @@ public class CategoryDBHelper {
     // name(text) === category.getName()
     // father(int) === category.getFatherID()
 
-    //Alta de nueva categoría
-    //Insert data into table
-    /*Ejemplo de método para insertar un nuevo registro a la base de datos
-        public void insertData(Student student){
-        SQLiteDatabase db = this.getWritableDatabase();
-        SQLiteStatement stmt = db.compileStatement("INSERT INTO student_info (name, age, class_name, city) " +
-                "VALUES (?,?,?,?)");
-        stmt.bindString(1, student.getName());
-        stmt.bindLong(2, student.getAge());
-        stmt.bindString(3, student.getClassName());
-        stmt.bindString(4, student.getCity());
-        stmt.execute();
-        stmt.close();
-        db.close();
-    }*/
-
-    //método para instertar un elemento a la base de datos
-    public static boolean insertCategory(Category cat, Context context){
-        String name = cat.getName();
-        int fatherID = cat.getFatherID();
-
-        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(context);
-        SQLiteDatabase db = admin.getWritableDatabase();
-        SQLiteStatement stmt = db.compileStatement("INSERT INTO " + DB_TABLE + "(name, fatherID) " +
-                "VALUES (?,?)");
-        stmt.bindString(1,name);
-        if(fatherID < 1){
-            stmt.bindNull(2);
-        } else {
-            stmt.bindLong(2,fatherID);
-        }
-        try{
-            stmt.execute();
-            stmt.close();
-            db.close();
-            Toast.makeText(context, "Agregada nueva categoría " + name, Toast.LENGTH_SHORT).show();
-            return true;
-        }catch (Exception e){
-            stmt.close();
-            db.close();
-            Toast.makeText(context, "Error al cargar categoría " + e.getMessage(), Toast.LENGTH_SHORT).show();
-            return false;
-        }//try-catch
-
-    }//insertCategory()
+    public CategoryDBHelper(Context context) {
+        super(context);
+    }
 
     //Otra forma de insertar un elemento a la base de datos
-    public static boolean createCategory(Category category, Context context){
+    public void create(Category category, Context context){
+        ContentValues record = new ContentValues();
+        record.put("name", category.getName());
+        record.put("father", category.getFatherID());
         try{
-            AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(context);
-            SQLiteDatabase db = admin.getWritableDatabase();
-
-            ContentValues registro = new ContentValues();
-            registro.put("name", category.getName());
-
-            db.insert(DB_TABLE, null, registro);
-            db.close();
-
-            Toast.makeText(context, "Agregada nueva categoría " + category.getName(), Toast.LENGTH_SHORT).show();
-            return true;
-        }catch (Exception e){
-            Toast.makeText(context, "Error al cargar categoría " + e.getMessage(), Toast.LENGTH_SHORT).show();
-            return false;
-        }//try-catch
-    }//createCategory()
-
-    /*
-    //Update data into table
-    public void updateData(Student student){
-        SQLiteDatabase db = this.getWritableDatabase();
-        SQLiteStatement stmt = db.compileStatement("UPDATE student_info SET name=?, age=?, class_name=?, city=? "+
-                "WHERE id = ?");
-        stmt.bindString(1, student.getName());
-        stmt.bindLong(2, student.getAge());
-        stmt.bindString(3, student.getClassName());
-        stmt.bindString(4, student.getCity());
-        stmt.bindLong(5, student.getId());
-        stmt.execute();
-        stmt.close();
-        db.close();
-    }
-    */
-    //Actualizar un registro de categoría
-    public static boolean updateCategory(Category cat, Context context){
-        String name = cat.getName();
-        int fatherID = cat.getFatherID();
-
-        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(context);
-        SQLiteDatabase db = admin.getWritableDatabase();
-
-        SQLiteStatement stmt = db.compileStatement("UPDATE " + DB_TABLE + " SET name=?, fatherID=?" + "WHERE id = ?");
-
-        stmt.bindString(1, name);
-        if(fatherID < 1){
-            stmt.bindNull(2);
-        } else {
-            stmt.bindLong(2,fatherID);
-        }//if-else
-        try{
-            stmt.execute();
-            stmt.close();
-            db.close();
-            Toast.makeText(context, "Categoría " + name + " actualizada.", Toast.LENGTH_SHORT).show();
-            return true;
+            super.create(record,DB_TABLE);
+            Toast.makeText(context, "Categoría creada correctamente", Toast.LENGTH_SHORT).show();
         }catch(Exception e){
-            Toast.makeText(context, "Error al actualizar la categoría: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-            return false;
+            Toast.makeText(context, "Error al crear categoría: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
-    }//updateCategory()
+    }//create()
+
+
+    //Actualizar un registro de categoria
+    public void update(Category category, Context context){
+        ContentValues record = new ContentValues();
+        record.put("name", category.getName());
+        record.put("father", category.getFatherID());
+        try{
+            super.update(record, DB_TABLE,"id=" + category.getId(), null);
+            Toast.makeText(context, "Categoría actualizada correctamente", Toast.LENGTH_SHORT).show();
+        }catch (Exception e){
+            Toast.makeText(context, "Error al actualizar la categoría: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    //Borrar un registro
+    public void delete(Category category, Context context){
+        try{
+            super.delete(DB_TABLE, "id=" + category.getId(), null);
+            Toast.makeText(context, "Categoría borrada correctamente", Toast.LENGTH_SHORT).show();
+        }catch (Exception e){
+            Toast.makeText(context, "Error al borrar la categoría: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    //Buscar un registro por ID
+    public Category findByID(int id){
+        Category category = new Category();
+        String[] columns = {"id","name","father"};
+        Cursor cursor = super.findByID(DB_TABLE,id,columns);
+        if(cursor.getCount() > 0){
+            cursor.moveToFirst();
+            category.setId(cursor.getInt(0));
+            category.setName(cursor.getString(1));
+            if(cursor.getInt(2) > 0){
+                category.setFather(this.findByID(cursor.getInt(2)));
+            }
+        }
+        return category;
+    }
+
 
     /*
     //Select all data from the table
@@ -186,33 +133,6 @@ public class CategoryDBHelper {
         return categories;
     }
 
-    //Delete data from the table for the given id
-    /*
-    public void deleteData(int stdId){
-        SQLiteDatabase db = this.getWritableDatabase();
-        SQLiteStatement stmt = db.compileStatement("DELETE FROM student_info WHERE id = ?");
-        stmt.bindLong(1, stdId);
-        stmt.execute();
-        stmt.close();
-        db.close();
-    }
-    */
-    public static void deleteCategory(int catID, Context context){
-        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(context);
-        SQLiteDatabase db = admin.getWritableDatabase();
-        SQLiteStatement stmt = db.compileStatement("DELETE FROM " + DB_TABLE + " WHERE id = ?");
-        stmt.bindLong(1,catID);
-        try{
-            stmt.execute();
-            stmt.close();
-            db.close();
-            Toast.makeText(context, "Categoría eliminada correctamente.", Toast.LENGTH_SHORT).show();
-        }catch(Exception e){
-            stmt.close();
-            db.close();
-            Toast.makeText(context, "Error al eliminar: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-    }//deleteCategory()
 
     //Select data for the given id
     /*

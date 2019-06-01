@@ -1,4 +1,4 @@
-package com.example.changosconsumidor.modelo;
+package com.example.changosconsumidor.model;
 
 import java.util.ArrayList;
 
@@ -17,6 +17,9 @@ public class Category {
 
     public int getId(){
         return this.id;
+    }
+    public void setId(int id){
+        this.id = id;
     }
 
     public String getName(){
