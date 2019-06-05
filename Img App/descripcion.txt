@@ -1,1 +1,2 @@
-Imágenes e iconos para la app
+Imágenes e iconos para la app.
+Icono para el apk e imagen para el splash.
