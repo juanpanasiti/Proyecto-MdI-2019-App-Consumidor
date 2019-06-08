@@ -1,5 +1,7 @@
 package com.example.changosconsumidor.database;
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import  android.database.sqlite.SQLiteOpenHelper;
 /*
@@ -67,5 +69,24 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
 
     }//onUpgrade()
 
+    public void create(ContentValues record, String tableName){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(tableName,null, record);
+    }
+     public void update(ContentValues record, String tableName, String whereClause, String[] whereArgs){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.update(tableName,record,whereClause,whereArgs);
+     }
+
+     public void delete(String tableName, String whereClause, String[] whereArgs){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(tableName, whereClause, whereArgs);
+     }
+
+     public Cursor findByID(String tableName, int id, String[] columns){
+        SQLiteDatabase db = this.getReadableDatabase();
+         Cursor cursor = db.query(tableName, columns, "id=" + id, null,null,null,null,"1");
+         return cursor;
+     }
 
 }//CLASS

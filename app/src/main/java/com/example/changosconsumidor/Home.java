@@ -5,8 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.changosconsumidor.modelo.Category;
-
 public class Home extends AppCompatActivity {
 
     @Override

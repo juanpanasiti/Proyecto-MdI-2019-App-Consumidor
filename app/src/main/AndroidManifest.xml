@@ -9,11 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".PrincipalMenuSlide"
-            android:label="@string/title_activity_principal_menu_slide"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".NewCategory" />
+        <activity android:name=".NewCategory"></activity>
         <activity android:name=".Home" />
         <activity android:name=".CategoryActivity" />
         <activity
