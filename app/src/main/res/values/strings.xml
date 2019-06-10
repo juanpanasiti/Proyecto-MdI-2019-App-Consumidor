@@ -5,4 +5,12 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="titleCategories">Categorías</string>
+
+    <!-- Home -->
+    <string name="title">Changos</string>
+    <string name="categorias">Categorías</string>
+    <string name="lista">Lista</string>
+    <string name="productos">Productos</string>
+
+
 </resources>
