@@ -1,5 +1,10 @@
 package com.example.changosconsumidor.model;
 
+import android.content.Context;
+import android.widget.Toast;
+
+import com.example.changosconsumidor.database.ProductDBHelper;
+
 public class Product {
     private int id;
     private String mark;
@@ -30,5 +35,17 @@ public class Product {
 
     public Category getCategory() {
         return category;
+    }
+
+    public boolean crear(Context context){
+        ProductDBHelper prodDBH = new ProductDBHelper();
+        try{
+            prodDBH.createProduct(this, context);
+            Toast.makeText(context, "Producto creado", Toast.LENGTH_SHORT).show();
+            return true;
+        } catch (Exception e){
+            Toast.makeText(context, "Error al crear producto " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            return false;
+        }
     }
 }
