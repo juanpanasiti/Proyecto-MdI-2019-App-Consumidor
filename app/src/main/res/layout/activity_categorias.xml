@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CategoriasActivity">
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:id="@+id/btn_de_cat_a_home"
+        />
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:id="@+id/campoCategoria"
+        android:hint="@string/hintCat"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:inputType="text"
+        />
+
+    <GridLayout
+        android:columnCount="3"
+        android:rowCount="1"
+        android:alignmentMode="alignMargins"
+        android:columnOrderPreserved="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="110dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_columnWeight="1"
+            android:text="@string/btnAgregarCat"
+            android:textColor="@color/btnAzul"
+            android:background="@drawable/diseno_button"
+            android:id="@+id/btnAgregarCategoria"
+            />
+
+        <Button
+            android:layout_width="110dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_columnWeight="1"
+            android:text="@string/btnEditarCat"
+            android:textColor="@color/btnAzul"
+            android:background="@drawable/diseno_button"
+            android:id="@+id/btnEditarCategoria"
+
+            />
+
+        <Button
+            android:layout_width="110dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_columnWeight="1"
+            android:text="@string/btnEliminarCat"
+            android:textColor="@color/btnAzul"
+            android:background="@drawable/diseno_button"
+            android:id="@+id/btnEliminarCategoria"
+            />
+
+    </GridLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/listCategorias"
+        ></ListView>
+
+
+</LinearLayout>

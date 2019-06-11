@@ -5,4 +5,10 @@
     <color name="colorAccent">#D81B60</color>
 
     <color name="black_overlay">#66000000</color>
+
+    <color name="btnAzul">#1E81FF</color>
+    <color name="btnMorado">#9061FF</color>
+    <color name="btnVerde">#33EB7B</color>
+    <color name="btnRosado">#FF2675</color>
+
 </resources>

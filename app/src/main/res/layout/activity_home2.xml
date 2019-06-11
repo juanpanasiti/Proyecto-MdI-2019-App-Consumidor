@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bgapps"
+    android:background="@drawable/fondo_naranja"
     tools:context=".HomeActivity">
 
     
@@ -32,15 +32,15 @@
                 android:layout_marginTop="36dp"
                 android:text="@string/categorias"
                 android:textSize="16dp"
-                android:textColor="#52BAFF"
+                android:textColor="#ffffff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <ImageView
                 android:layout_alignParentRight="true"
-                android:src="@drawable/carroMorado"
+                android:src="@drawable/carro_morado"
                 android:layout_width="70dp"
-                android:layout_height="70dp" />
+                android:layout_height="70dp"/>
 
         </RelativeLayout>
         
@@ -53,6 +53,7 @@
             android:layout_height="wrap_content">
 
             <android.support.v7.widget.CardView
+                android:id="@+id/cvLista"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
@@ -62,6 +63,7 @@
                 android:layout_marginLeft="100dp"
                 android:layout_marginRight="100dp"
                 android:layout_marginTop="30dp"
+
                 >
 
                 <LinearLayout
@@ -73,8 +75,8 @@
 
                     <ImageView
                         android:src="@drawable/listaRoja"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp" />
+                        android:layout_width="70dp"
+                        android:layout_height="70dp" />
 
                     <TextView
                         android:layout_marginTop="12dp"
@@ -88,6 +90,7 @@
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
+                android:id="@+id/cvCategorias"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
@@ -100,29 +103,31 @@
                 >
 
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:padding="16dp"
-                    android:gravity="center"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:onClick="irCategorias"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
                     <ImageView
-                        android:src="@drawable/catCeleste"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp" />
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/cat_celeste" />
 
                     <TextView
-                        android:layout_marginTop="1dp"
-                        android:textColor="#6f6f6f"
-                        android:textSize="24dp"
-                        android:text="@string/categorias"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:text="@string/categorias"
+                        android:textColor="#6f6f6f"
+                        android:textSize="24dp" />
 
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
+                android:id="@+id/cvProductos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
@@ -142,9 +147,9 @@
                     android:layout_height="match_parent">
 
                     <ImageView
-                        android:src=""
-                        android:layout_width="60dp"
-                        android:layout_height="60dp" />
+                        android:src="@drawable/cat_celeste"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp" />
 
                     <TextView
                         android:layout_marginTop="1dp"

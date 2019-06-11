@@ -12,5 +12,10 @@
     <string name="lista">Lista</string>
     <string name="productos">Productos</string>
 
+    <!-- Categorias -->
+    <string name="hintCat">Ingresar categoría</string>
+    <string name="btnAgregarCat">Agregar</string>
+    <string name="btnEliminarCat">Eliminar</string>
+    <string name="btnEditarCat">Editar</string>
 
 </resources>
