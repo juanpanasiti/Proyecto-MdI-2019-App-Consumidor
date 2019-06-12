@@ -48,4 +48,15 @@ public class Product {
             return false;
         }
     }
+    public boolean modificar(Context context){
+        ProductDBHelper prodDBH = new ProductDBHelper();
+        try{
+            prodDBH.updateProduct(this, context);
+            Toast.makeText(context,"Producto modificado ",Toast.LENGTH_SHORT).show();
+            return true;
+        } catch (Exception e){
+            Toast.makeText(context, "Error al crear producto "+e.getMessage(), Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
 }
