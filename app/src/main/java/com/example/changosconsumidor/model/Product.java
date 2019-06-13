@@ -16,31 +16,57 @@ public class Product {
     private String contentUnit;
     private Category category;
 
+//Metodos set y get
+
     public int getID() {
         return id;
+    }
+
+    public void setID(int id){
+        this.id=id;
     }
 
     public String getMark() {
         return mark;
     }
 
+    public void setMark(String mark){
+        this.mark=mark;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public void setName(String name){
+        this.name=name;
     }
 
     public float getContentQuantity() {
         return contentQuantity;
     }
 
+    public void setContentQuantity(float contentQuantity){
+        this.contentQuantity=contentQuantity;
+    }
+
     public String getContentUnit() {
         return contentUnit;
+    }
+
+    public void setContentUnit(String contentUnit){
+        this.contentUnit=contentUnit;
     }
 
     public Category getCategory() {
         return category;
     }
 
+    public void setCategory(Category category){
+        this.category=category;
+    }
 
+// Metodos
 
     public boolean crear(Context context){
         ProductDBHelper prodDBH = new ProductDBHelper();
