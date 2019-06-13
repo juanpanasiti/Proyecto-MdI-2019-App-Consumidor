@@ -10,6 +10,8 @@ import android.widget.Toast;
 import com.example.changosconsumidor.model.Category;
 import com.example.changosconsumidor.model.Product;
 
+import java.util.ArrayList;
+
 public class ProductDBHelper extends AdminSQLiteOpenHelper{
     private static final String DB_TABLE = "products";//nombre de la tabla
 
@@ -106,5 +108,40 @@ public class ProductDBHelper extends AdminSQLiteOpenHelper{
             product.setCategory(catDBH.findByID(cursor.getInt(5)));
         }
         return product;
-    }
+    }//findByID()
+
+    //Borrar un registro
+    public void deleteProduct(Product product, Context context){
+        try{
+            super.delete(DB_TABLE, "id=" + product.getID(), null);
+            Toast.makeText(context, "Producto borrado correctamente", Toast.LENGTH_SHORT).show();
+        }catch (Exception e){
+            Toast.makeText(context, "Error al borrar el producto: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }//deleteProduct()
+
+    public static ArrayList<Product> getAll(Context context){
+        ArrayList<Product> products = new ArrayList<>();
+        String[] columns = {"id","mark","name","contentQuantity","contentUnit","category_id"};
+
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(context);
+        SQLiteDatabase db = admin.getReadableDatabase();//Acceso de solo lectura a la BD
+
+        Cursor cursor = db.query(DB_TABLE,columns,null,null,null,null,"name");
+        while (cursor.moveToNext()){
+            Product prod = new Product();
+
+            prod.setID(cursor.getInt(0));
+            prod.setMark(cursor.getString(1));
+            prod.setName(cursor.getString(2));
+            prod.setContentQuantity(cursor.getFloat(3));
+            prod.setContentUnit(cursor.getString(4));
+            CategoryDBHelper catDBH = new CategoryDBHelper(context);
+            prod.setCategory(catDBH.findByID(cursor.getInt(5)));
+
+            products.add(prod);
+        }
+        db.close();
+        return products;
+    }//getAll()
 }
