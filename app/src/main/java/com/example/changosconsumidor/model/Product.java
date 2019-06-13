@@ -16,6 +16,8 @@ public class Product {
     private String contentUnit;
     private Category category;
 
+//Metodos set y get
+
     public int getID() {
         return id;
     }
@@ -64,7 +66,7 @@ public class Product {
         this.category=category;
     }
 
-
+// Metodos
 
     public boolean crear(Context context){
         ProductDBHelper prodDBH = new ProductDBHelper();
