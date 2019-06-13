@@ -18,4 +18,10 @@
     <string name="btnEliminarCat">Eliminar</string>
     <string name="btnEditarCat">Editar</string>
 
+    <!-- Productos -->
+    <string name="hintProd">Ingresar producto</string>
+    <string name="btnAgregarProd">Agregar</string>
+    <string name="btnEliminarProd">Eliminar</string>
+    <string name="btnEditarProd">Editar</string>
+
 </resources>

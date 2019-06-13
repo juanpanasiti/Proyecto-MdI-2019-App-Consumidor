@@ -1,9 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProductosActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:id="@+id/btn_de_cat_a_home"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/campoProducto"
+        android:hint="@string/hintProd"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:inputType="text"
+        />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:id="@+id/spinnerCategorias"
+        android:background="d"
+        >
+    </Spinner>
+
+    <GridLayout
+        android:columnCount="3"
+        android:rowCount="1"
+        android:alignmentMode="alignMargins"
+        android:columnOrderPreserved="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp">
+
+        <Button
+            android:layout_width="110dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_columnWeight="1"
+            android:text="@string/btnAgregarProd"
+            android:textColor="@color/btnAzul"
+            android:background="@drawable/diseno_button"
+            android:id="@+id/btnAgregarProducto"
+            />
+
+        <Button
+            android:layout_width="110dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_columnWeight="1"
+            android:text="@string/btnEditarProd"
+            android:textColor="@color/btnAzul"
+            android:background="@drawable/diseno_button"
+            android:id="@+id/btnEditarProducto"
+
+            />
+
+        <Button
+            android:layout_width="110dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_columnWeight="1"
+            android:text="@string/btnEliminarProd"
+            android:textColor="@color/btnAzul"
+            android:background="@drawable/diseno_button"
+            android:id="@+id/btnEliminarProducto"
+            />
+
+    </GridLayout>
+
+</LinearLayout>

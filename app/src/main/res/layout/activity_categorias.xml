@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     tools:context=".CategoriasActivity">
 
-    <Button
+    <ImageButton
         android:layout_width="100dp"
         android:layout_height="40dp"
         android:id="@+id/btn_de_cat_a_home"
