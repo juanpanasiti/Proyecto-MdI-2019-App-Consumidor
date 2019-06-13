@@ -97,7 +97,7 @@ public class ProductDBHelper extends AdminSQLiteOpenHelper{
         Cursor cursor = super.findByID(DB_TABLE,id,columns);
         if(cursor.getCount() > 0){
             cursor.moveToFirst();
-            product.setId(cursor.getInt(0));
+            product.setID(cursor.getInt(0));
             product.setMark(cursor.getString(1));
             product.setName(cursor.getString(2));
             product.setContentQuantity(cursor.getFloat(3));
