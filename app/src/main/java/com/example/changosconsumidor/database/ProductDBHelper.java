@@ -2,6 +2,7 @@ package com.example.changosconsumidor.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import android.widget.Toast;
@@ -9,8 +10,13 @@ import android.widget.Toast;
 import com.example.changosconsumidor.model.Category;
 import com.example.changosconsumidor.model.Product;
 
-public class ProductDBHelper {
+public class ProductDBHelper extends AdminSQLiteOpenHelper{
     private static final String DB_TABLE = "products";//nombre de la tabla
+
+    public ProductDBHelper(Context context) {
+        super(context);
+    }
+
     /*
     private int id;
     private String mark;
@@ -31,7 +37,6 @@ public class ProductDBHelper {
      */
     public static void createProduct(Product product, Context context){
         try{
-            int id = product.getID();
             String mark = product.getMark();
             String name = product.getName();
             float contentQuantity = product.getContentQuantity();
@@ -58,7 +63,6 @@ public class ProductDBHelper {
     }//createProduct();
 
     public static void updateProduct(Product product, Context context){
-        int id = product.getID();
         String mark = product.getMark();
         String name = product.getName();
         float contentQuantity = product.getContentQuantity();
@@ -71,7 +75,6 @@ public class ProductDBHelper {
         //SQLiteStatement stmt = new
         try{
             ContentValues record = new ContentValues();
-            record.put("id", id);
             record.put("mark",mark);
             record.put("name",name);
             record.put("contentQuantity", contentQuantity);
@@ -86,4 +89,22 @@ public class ProductDBHelper {
             Toast.makeText(context, "Error al guardar: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }//updateProduct()
+
+    //Buscar un registro por ID
+    public Product findByID(int id, Context context){
+        Product product = new Product();
+        String[] columns = {"id","mark","name","contentQuantity","contentUnit","category_id"};
+        Cursor cursor = super.findByID(DB_TABLE,id,columns);
+        if(cursor.getCount() > 0){
+            cursor.moveToFirst();
+            product.setId(cursor.getInt(0));
+            product.setMark(cursor.getString(1));
+            product.setName(cursor.getString(2));
+            product.setContentQuantity(cursor.getFloat(3));
+            product.setContentUnit(cursor.getString(4));
+            CategoryDBHelper catDBH = new CategoryDBHelper(context);
+            product.setCategory(catDBH.findByID(cursor.getInt(5)));
+        }
+        return product;
+    }
 }
