@@ -1,13 +1,13 @@
 package com.example.changosconsumidor.model;
 
-<<<<<<< HEAD
-=======
+
+
 import android.content.Context;
 import android.widget.Toast;
 
 import com.example.changosconsumidor.database.ProductDBHelper;
 
->>>>>>> e96cdc4a12aa8dc1c222f0c1bc49a5774df0e64a
+
 public class Product {
     private int id;
     private String mark;
@@ -39,9 +39,8 @@ public class Product {
     public Category getCategory() {
         return category;
     }
-<<<<<<< HEAD
-}
-=======
+
+
 
     public boolean crear(Context context){
         ProductDBHelper prodDBH = new ProductDBHelper();
@@ -66,74 +65,3 @@ public class Product {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> e96cdc4a12aa8dc1c222f0c1bc49a5774df0e64a
