@@ -69,7 +69,7 @@ public class Product {
 // Metodos
 
     public boolean crear(Context context){
-        ProductDBHelper prodDBH = new ProductDBHelper();
+        ProductDBHelper prodDBH = new ProductDBHelper(context);
         try{
             prodDBH.createProduct(this, context);
             Toast.makeText(context, "Producto creado", Toast.LENGTH_SHORT).show();
@@ -80,7 +80,7 @@ public class Product {
         }
     }
     public boolean modificar(Context context){
-        ProductDBHelper prodDBH = new ProductDBHelper();
+        ProductDBHelper prodDBH = new ProductDBHelper(context);
         try{
             prodDBH.updateProduct(this, context);
             Toast.makeText(context,"Producto modificado ",Toast.LENGTH_SHORT).show();
