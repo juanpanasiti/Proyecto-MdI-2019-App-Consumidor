@@ -65,7 +65,7 @@ public class ProductDBHelper {
         String contentUnit = product.getContentUnit();
         int categoryID = product.getCategory().getId();
 
-        panasAdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(context);
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(context);
         SQLiteDatabase db = admin.getWritableDatabase();
 
         //SQLiteStatement stmt = new
