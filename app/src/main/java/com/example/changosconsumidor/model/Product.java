@@ -67,7 +67,7 @@ public class Product {
     }
 
 // Metodos
-
+    //createproduct
     public boolean crear(Context context){
         ProductDBHelper prodDBH = new ProductDBHelper(context);
         try{
@@ -79,6 +79,7 @@ public class Product {
             return false;
         }
     }
+    //update
     public boolean modificar(Context context){
         ProductDBHelper prodDBH = new ProductDBHelper(context);
         try{
@@ -86,8 +87,46 @@ public class Product {
             Toast.makeText(context,"Producto modificado ",Toast.LENGTH_SHORT).show();
             return true;
         } catch (Exception e){
-            Toast.makeText(context, "Error al crear producto "+e.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Error al crear producto"+e.getMessage(), Toast.LENGTH_SHORT).show();
             return false;
         }
     }
-}
+    //find id
+    public boolean Buscar(Context context){
+        ProductDBHelper prodDBH = new ProductDBHelper(context);
+        try{
+            prodDBH.findByID(id,context);//revisa!!!!!!!!
+            Toast.makeText(context,"Producto encontrado",Toast.LENGTH_SHORT).show();
+            return true;
+        } catch (Exception e){
+            Toast.makeText(context, "Producto no encontrado"+e.getMessage(), Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+    //deleteproduct
+    public boolean BorrarReg(Context context){
+        ProductDBHelper prodDBH = new ProductDBHelper(context);
+        try{
+            prodDBH.deleteProduct(this,context);
+            Toast.makeText(context,"Registro borrado",Toast.LENGTH_SHORT).show();
+            return true;
+        } catch (Exception e){
+            Toast.makeText(context, "Registro no borrado"+e.getMessage(), Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+    //getall
+    public boolean traertodo(Context context){
+        ProductDBHelper prodDBH = new ProductDBHelper(context);
+        try{
+            prodDBH.getAll(context);//revisa!!!!!!!!
+            Toast.makeText(context,"Producto encontrado",Toast.LENGTH_SHORT).show();
+            return true;
+        } catch (Exception e){
+            Toast.makeText(context, "Producto no encontrado"+e.getMessage(), Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
+    }
+
