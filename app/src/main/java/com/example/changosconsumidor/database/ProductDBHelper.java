@@ -144,4 +144,30 @@ public class ProductDBHelper extends AdminSQLiteOpenHelper{
         db.close();
         return products;
     }//getAll()
+
+    public static ArrayList<Product> findByCategory(Category category, Context context){
+        ArrayList<Product> products = new ArrayList<>();
+        String[] columns = {"id","mark","name","contentQuantity","contentUnit","category_id"};
+        String selection = "category_id=";
+        String[] selectionArgs = {String.valueOf(category.getId())};
+
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(context);
+        Cursor cursor = admin.findByFilter(DB_TABLE,columns,selection,selectionArgs);
+
+        while(cursor.moveToNext()){
+            Product prod = new Product();
+
+            prod.setID(cursor.getInt(0));
+            prod.setMark(cursor.getString(1));
+            prod.setName(cursor.getString(2));
+            prod.setContentQuantity(cursor.getFloat(3));
+            prod.setContentUnit(cursor.getString(4));
+            CategoryDBHelper catDBH = new CategoryDBHelper(context);
+            prod.setCategory(catDBH.findByID(cursor.getInt(5)));
+
+            products.add(prod);
+        }
+
+        return products;
+    }//findByCategory()
 }
