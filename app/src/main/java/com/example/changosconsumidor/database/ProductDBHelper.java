@@ -81,7 +81,7 @@ public class ProductDBHelper extends AdminSQLiteOpenHelper{
             product.setContentQuantity(cursor.getFloat(3));
             product.setContentUnit(cursor.getString(4));
             CategoryDBHelper catDBH = new CategoryDBHelper(context);
-            product.setCategory(catDBH.findByID(cursor.getInt(5)));
+            product.setCategory(catDBH.findByID(cursor.getInt(5),context));
         }
         return product;
     }//findByID()
@@ -109,7 +109,7 @@ public class ProductDBHelper extends AdminSQLiteOpenHelper{
             prod.setContentQuantity(cursor.getFloat(3));
             prod.setContentUnit(cursor.getString(4));
             CategoryDBHelper catDBH = new CategoryDBHelper(context);
-            prod.setCategory(catDBH.findByID(cursor.getInt(5)));
+            prod.setCategory(catDBH.findByID(cursor.getInt(5), context));
 
             products.add(prod);
         }
@@ -132,7 +132,7 @@ public class ProductDBHelper extends AdminSQLiteOpenHelper{
             prod.setContentQuantity(cursor.getFloat(3));
             prod.setContentUnit(cursor.getString(4));
             CategoryDBHelper catDBH = new CategoryDBHelper(context);
-            prod.setCategory(catDBH.findByID(cursor.getInt(5)));
+            prod.setCategory(catDBH.findByID(cursor.getInt(5),context));
 
             products.add(prod);
         }
