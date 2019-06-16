@@ -14,30 +14,13 @@ import java.util.ArrayList;
 
 public class ProductDBHelper extends AdminSQLiteOpenHelper{
     private static final String DB_TABLE = "products";//nombre de la tabla
+    private static final String[] DB_ALL_COLUMNS = {"id","mark","name","contentQuantity","contentUnit","category_id"};
 
     public ProductDBHelper(Context context) {
         super(context);
     }
 
-    /*
-    private int id;
-    private String mark;
-    private String name;
-    private float contentQuantity;
-    private String contentUnit;
-    private Category category;
-
-    //Tabla PRODUCTS
-        String sqlProducts = "CREATE TABLE products(" +
-                                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                                "mark TEXT NOT NULL," +
-                                "name TEXT NOT NULL," +
-                                "contentQuantity REAL NOT NULL," +
-                                "contentUnit TEXT NOT NULL," +
-                                "category_id INTEGER NOT NULL" +
-                                ")";
-     */
-    public static void createProduct(Product product, Context context){
+    public void createProduct(Product product, Context context){
         try{
             String mark = product.getMark();
             String name = product.getName();
@@ -45,9 +28,6 @@ public class ProductDBHelper extends AdminSQLiteOpenHelper{
             String contentUnit = product.getContentUnit();
             int categoryID = product.getCategory().getId();
 
-            AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(context);
-            SQLiteDatabase db = admin.getWritableDatabase();
-
             ContentValues record = new ContentValues();
             record.put("mark",mark);
             record.put("name",name);
@@ -55,8 +35,7 @@ public class ProductDBHelper extends AdminSQLiteOpenHelper{
             record.put("contentUnit",contentUnit);
             record.put("category_id", categoryID);
 
-            db.insert(DB_TABLE,null,record);
-            db.close();
+            super.create(record,DB_TABLE);
 
             Toast.makeText(context, "Producto agregado.", Toast.LENGTH_SHORT).show();
         }catch(Exception e){
@@ -64,17 +43,16 @@ public class ProductDBHelper extends AdminSQLiteOpenHelper{
         }
     }//createProduct();
 
-    public static void updateProduct(Product product, Context context){
+    public void updateProduct(Product product, Context context){
         String mark = product.getMark();
         String name = product.getName();
         float contentQuantity = product.getContentQuantity();
         String contentUnit = product.getContentUnit();
         int categoryID = product.getCategory().getId();
 
-        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(context);
-        SQLiteDatabase db = admin.getWritableDatabase();
+        String whereClause = "id=";
+        String[] whereArgs = {String.valueOf(product.getID())};
 
-        //SQLiteStatement stmt = new
         try{
             ContentValues record = new ContentValues();
             record.put("mark",mark);
@@ -83,8 +61,7 @@ public class ProductDBHelper extends AdminSQLiteOpenHelper{
             record.put("contentUnit",contentUnit);
             record.put("category_id", categoryID);
 
-            db.insert(DB_TABLE,null,record);
-            db.close();
+            super.update(record,DB_TABLE,whereClause,whereArgs);
 
             Toast.makeText(context, "Producto agregado.", Toast.LENGTH_SHORT).show();
         }catch(Exception e){
@@ -95,8 +72,7 @@ public class ProductDBHelper extends AdminSQLiteOpenHelper{
     //Buscar un registro por ID
     public Product findByID(int id, Context context){
         Product product = new Product();
-        String[] columns = {"id","mark","name","contentQuantity","contentUnit","category_id"};
-        Cursor cursor = super.findByID(DB_TABLE,id,columns);
+        Cursor cursor = super.findByID(DB_TABLE,id,DB_ALL_COLUMNS);
         if(cursor.getCount() > 0){
             cursor.moveToFirst();
             product.setID(cursor.getInt(0));
@@ -120,14 +96,10 @@ public class ProductDBHelper extends AdminSQLiteOpenHelper{
         }
     }//deleteProduct()
 
-    public static ArrayList<Product> getAll(Context context){
+    public ArrayList<Product> getAll(Context context){
         ArrayList<Product> products = new ArrayList<>();
-        String[] columns = {"id","mark","name","contentQuantity","contentUnit","category_id"};
 
-        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(context);
-        SQLiteDatabase db = admin.getReadableDatabase();//Acceso de solo lectura a la BD
-
-        Cursor cursor = db.query(DB_TABLE,columns,null,null,null,null,"name");
+        Cursor cursor = super.findAll(DB_TABLE,DB_ALL_COLUMNS);
         while (cursor.moveToNext()){
             Product prod = new Product();
 
@@ -141,18 +113,15 @@ public class ProductDBHelper extends AdminSQLiteOpenHelper{
 
             products.add(prod);
         }
-        db.close();
         return products;
     }//getAll()
 
-    public static ArrayList<Product> findByCategory(Category category, Context context){
+    public ArrayList<Product> findByCategory(Category category, Context context){
         ArrayList<Product> products = new ArrayList<>();
-        String[] columns = {"id","mark","name","contentQuantity","contentUnit","category_id"};
         String selection = "category_id=";
         String[] selectionArgs = {String.valueOf(category.getId())};
 
-        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(context);
-        Cursor cursor = admin.findByFilter(DB_TABLE,columns,selection,selectionArgs);
+        Cursor cursor = super.findByFilter(DB_TABLE,DB_ALL_COLUMNS,selection,selectionArgs);
 
         while(cursor.moveToNext()){
             Product prod = new Product();
