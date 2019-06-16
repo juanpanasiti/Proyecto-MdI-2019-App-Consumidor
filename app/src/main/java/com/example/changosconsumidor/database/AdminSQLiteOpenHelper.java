@@ -70,23 +70,45 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
     }//onUpgrade()
 
     public void create(ContentValues record, String tableName){
+        //crea un nuevo registro en la tabla TableName
         SQLiteDatabase db = this.getWritableDatabase();
         db.insert(tableName,null, record);
-    }
+    }//create()
+
      public void update(ContentValues record, String tableName, String whereClause, String[] whereArgs){
+        //Actualizar los registros de la base de datos tableName que cumplan con las condiciones
+        // de whereClause y whereArgs
         SQLiteDatabase db = this.getWritableDatabase();
         db.update(tableName,record,whereClause,whereArgs);
-     }
+     }//update()
 
      public void delete(String tableName, String whereClause, String[] whereArgs){
+        //Elimina los registros de la base de datos de la tabla tableName que cumplan con las condiciones
+        // de whereClause y whereArgs, puede ser uno o muchos registros.. o ninguno
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(tableName, whereClause, whereArgs);
-     }
+     }//delete()
 
      public Cursor findByID(String tableName, int id, String[] columns){
+        //Trae un solo registro de la base de datos de la tabla tableName según su ID
         SQLiteDatabase db = this.getReadableDatabase();
-         Cursor cursor = db.query(tableName, columns, "id=" + id, null,null,null,null,"1");
-         return cursor;
-     }
+        Cursor cursor = db.query(tableName, columns, "id=" + id, null,null,null,null,"1");
+        return cursor;
+     }//findByID()
+
+     public Cursor findAll(String tableName, String[] columns){
+        //Consulta a la base de datos por todos los registros de cierta tabla (tableName) y columnas seleccionadas
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(tableName, columns,null,null,null,null,null);
+        return cursor;
+     }//findAll()
+
+     public Cursor findByFilter(String tableName, String[] columns, String selection, String[] selectionArgs){
+        //Consulta a la base de datos por los registros de la tabla tableName que cumplen con las condiciones de selectionArgs
+        // de las columnas de selection.
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(tableName,columns,selection,selectionArgs,null,null,null);
+        return cursor;
+     }//findByFilter()
 
 }//CLASS
