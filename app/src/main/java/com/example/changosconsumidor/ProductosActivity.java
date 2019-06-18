@@ -39,6 +39,7 @@ public class ProductosActivity extends AppCompatActivity {
         //Cargar en el Spinner de categorias
         ArrayAdapter<CharSequence> arrayCategorias = new ArrayAdapter(this, android.R.layout.simple_spinner_item,listaNombreCategorias);
         spinnerCategorias.setAdapter(arrayCategorias);
+        spinnerCategorias.
 
         //Recordar sobre escribir el metodo toString en el getName del objeto
         ArrayAdapter<Category> arrayObjCats = new ArrayAdapter<Category>(this,R.layout.support_simple_spinner_dropdown_item,listaCategorias);
