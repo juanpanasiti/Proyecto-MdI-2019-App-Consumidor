@@ -76,7 +76,7 @@ public class BuyListDBHelper extends AdminSQLiteOpenHelper {
         while (cursor.moveToNext()){
             BuyList buyList = new BuyList();
 
-            buyList.setId(cursor.getInt(0));
+            buyList.setID(cursor.getInt(0));
             buyList.setName(cursor.getString(1));
             buyList.setDate(cursor.getString(2));
 
