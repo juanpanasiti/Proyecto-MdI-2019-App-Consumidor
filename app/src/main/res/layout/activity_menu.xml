@@ -14,7 +14,7 @@
         android:layout_marginTop="32dp"
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button5"
+        app:layout_constraintTop_toBottomOf="@+id/btnCrearUsuario"
         app:srcCompat="@drawable/twitter"
         android:background="@drawable/boton_social"/>
 
@@ -31,51 +31,51 @@
         app:srcCompat="@drawable/carro_morado" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/etNombreUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
+        android:backgroundTint="@color/colorPrimary"
         android:ems="10"
-        android:hint="Email"
+        android:hint="Nombre de usuario"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        android:backgroundTint="@color/colorPrimary"/>
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/TxtContraseña"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
+        android:backgroundTint="@color/colorPrimary"
         android:ems="10"
-        android:hint="Password"
+        android:hint="Contraseña"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2"
-        android:backgroundTint="@color/colorPrimary"/>
+        app:layout_constraintTop_toBottomOf="@+id/etNombreUsuario" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/btnCrearUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
-        android:text="Crear usuario"
+        android:background="@drawable/boton_redondeado_conborde"
+        android:text="Crear cuenta"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button6"
-        android:background="@drawable/boton_redondeado_conborde"/>
+        app:layout_constraintTop_toBottomOf="@+id/btnLogear" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/btnLogear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -85,7 +85,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3"
+        app:layout_constraintTop_toBottomOf="@+id/TxtContraseña"
         android:background="@drawable/boton_redondeado"/>
 
     <ImageButton
@@ -98,7 +98,7 @@
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toStartOf="@+id/imageButton5"
         app:layout_constraintStart_toEndOf="@+id/imageButton6"
-        app:layout_constraintTop_toBottomOf="@+id/button5"
+        app:layout_constraintTop_toBottomOf="@+id/btnCrearUsuario"
         app:srcCompat="@drawable/facebook"
         android:background="@drawable/boton_social"/>/>
 
@@ -110,7 +110,7 @@
         android:layout_marginTop="32dp"
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button5"
+        app:layout_constraintTop_toBottomOf="@+id/btnCrearUsuario"
         app:srcCompat="@drawable/google"
         android:background="@drawable/boton_social"/>/>
 
