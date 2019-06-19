@@ -34,7 +34,7 @@ public class Registro extends AppCompatActivity {
                 editor.putString(nuevoUsuario + nuevoContra +"Datos", nuevoUsuario + "/n" + nuevoEmail  );
                 editor.commit();
 
-                Intent pantallaLogeo = new Intent(Registro.this, mainRegistro.class);
+                Intent pantallaLogeo = new Intent(Registro.this, MainRegistro.class);
                 startActivity(pantallaLogeo);
 
 
