@@ -68,7 +68,11 @@ public class ItemDBHelper extends AdminSQLiteOpenHelper {
             item.setBuyList(blDBH.findByID(cursor.getInt(2),context));
             item.setQuantity(cursor.getFloat(3));
             item.setUnitPrice(cursor.getFloat(4));
-            item.setIntoChart(cursor.getInt(5));
+            if(cursor.getInt(5) != 0){
+                item.setIntoChart(true);
+            } else{
+                item.setIntoChart(false);
+            }
         }
         return item;
     }//findByID()
@@ -97,9 +101,12 @@ public class ItemDBHelper extends AdminSQLiteOpenHelper {
             item.setBuyList(blDBH.findByID(cursor.getInt(2),context));
             item.setQuantity(cursor.getFloat(3));
             item.setUnitPrice(cursor.getFloat(4));
-            item.setIntoChart(cursor.getInt(5));
-
-            buyLists.add(item);
+            if(cursor.getInt(5) != 0){
+                item.setIntoChart(true);
+            } else{
+                item.setIntoChart(false);
+            }
+            items.add(item);
         }
         return items;
     }//getAll()
