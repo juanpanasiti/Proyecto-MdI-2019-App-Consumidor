@@ -7,7 +7,7 @@
     android:background="#FF9800">
 
     <EditText
-        android:id="@+id/text"
+        android:id="@+id/txtDatos"
         android:layout_width="248dp"
         android:layout_height="118dp"
         android:layout_marginStart="8dp"
