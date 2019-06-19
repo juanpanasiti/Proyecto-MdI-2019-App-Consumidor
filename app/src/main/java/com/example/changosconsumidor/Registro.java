@@ -1,5 +1,6 @@
 package com.example.changosconsumidor;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,7 +18,7 @@ public class Registro extends AppCompatActivity {
         final EditText nombreUsuario = (EditText) findViewById(R.id.etNuevoNombre);
         final EditText contraseña = (EditText) findViewById(R.id.etNuevaContra);
         final EditText email = (EditText) findViewById(R.id.etNuevoEmail);
-        Button btnRegistro = (Button) findViewById(R.id.botonNuevoRegistro);
+        final Button btnRegistro = (Button) findViewById(R.id.botonNuevoRegistro);
 
 
         btnRegistro.setOnClickListener(new View.OnClickListener() {
@@ -32,6 +33,9 @@ public class Registro extends AppCompatActivity {
 
                 editor.putString(nuevoUsuario + nuevoContra +"Datos"+ nuevoUsuario + "/n" + nuevoEmail  );
                 editor.commit();
+
+                Intent pantallaLogeo = new Intent(Registro.this, mainRegistro.class);
+                startActivity(pantallaLogeo);
 
 
 
