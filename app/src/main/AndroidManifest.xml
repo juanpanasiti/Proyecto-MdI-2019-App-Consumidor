@@ -16,6 +16,9 @@
         <activity android:name=".NewCategory" />
         <activity android:name=".Home" />
         <activity android:name=".CategoryActivity" />
+        <activity android:name=".Registro" />
+        <activity android:name=".PantallaDeMuestra" />
+        <activity android:name=".MainRegistro" />
         <activity
             android:name=".SplashScreen"
             android:configChanges="orientation|keyboardHidden|screenSize"
