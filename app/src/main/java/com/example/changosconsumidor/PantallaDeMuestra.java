@@ -15,9 +15,10 @@ public class PantallaDeMuestra extends AppCompatActivity {
         setContentView(R.layout.mostrar_info);
 
         SharedPreferences preferencias = getSharedPreferences("Mis Preferencias", MODE_PRIVATE);
-        String mostrar = preferencias.getString("Datos","");
+        String mostrar = preferencias.getString("mostrar","");
 
         TextView mostrarInfo = (TextView) findViewById(R.id.txtDatos);
         mostrarInfo.setText(mostrar);
 
+}
 }

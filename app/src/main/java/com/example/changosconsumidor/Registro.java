@@ -31,7 +31,7 @@ public class Registro extends AppCompatActivity {
 
                 SharedPreferences.Editor editor = preferencias.edit();
 
-                editor.putString(nuevoUsuario + nuevoContra +"Datos"+ nuevoUsuario + "/n" + nuevoEmail  );
+                editor.putString(nuevoUsuario + nuevoContra +"Datos", nuevoUsuario + "/n" + nuevoEmail  );
                 editor.commit();
 
                 Intent pantallaLogeo = new Intent(Registro.this, mainRegistro.class);
