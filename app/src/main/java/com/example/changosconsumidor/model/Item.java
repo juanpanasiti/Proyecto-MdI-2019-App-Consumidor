@@ -4,7 +4,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.example.changosconsumidor.database.ItemDBHelper;
-import com.example.changosconsumidor.database.ProductDBHelper;
+
 
 public class Item {
     private Product product;
@@ -82,6 +82,7 @@ public class Item {
 
 
     //update
+
     public boolean modificar(Context context){
         ItemDBHelper ItemDBH = new ItemDBHelper(context);
         try{
@@ -105,7 +106,9 @@ public class Item {
             return false;
         }
     }
+
     //deleteproduct
+
     public boolean BorrarReg(Context context){
         ItemDBHelper ItemDBH = new ItemDBHelper(context);
         try{
@@ -117,7 +120,9 @@ public class Item {
             return false;
         }
     }
+
     //getall
+
     public boolean traertodo(Context context){
         ItemDBHelper ItemDBH = new ItemDBHelper(context);
         try{
