@@ -6,6 +6,7 @@ import android.widget.Toast;
 import com.example.changosconsumidor.database.BuyListDBHelper;
 
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,8 +18,10 @@ public class BuyList {
     private int id;
 
     //metodos set y get
-    public int getID() {
+    public int getID()
+    {
         return id;
+
     }
 
     public void setID(int id){
@@ -26,23 +29,48 @@ public class BuyList {
     }
 
     public ArrayList getItems() {
+
         return items;
+
     }
 
     public String getName() {
+
         return name;
+
     }
 
-    public void setName(){
+    public void setName(String name){
 
             this.name=name;
 
     }
+
+//metodo recive string y lo pasa a un date
+
+    public Date setDBDate (String date){
+
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        Date fechaDate = null;
+        try {
+             fechaDate = formato.parse(date);
+        }
+        catch (ParseException ex)
+        {
+            System.out.println(ex);
+        }
+        return fechaDate;
+    }
+
+
+
     public void setDate(Date date){
 
         this.date=date;
     }
-    public String getDBDate(){
+    //resive un date y debuelve un string
+
+    public String getDBDate(Date date){
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         String fecha = sdf.format(new Date());
         return fecha;
