@@ -14,33 +14,34 @@
         />
 
     <GridLayout
-        android:alignmentMode="alignMargins"
-        android:columnOrderPreserved="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:alignmentMode="alignMargins"
+        android:columnCount="4"
+        android:columnOrderPreserved="false">
 
         <EditText
+            android:id="@+id/campoCategoria"
             android:layout_width="280dp"
             android:layout_height="40dp"
+            android:layout_columnSpan="3"
             android:layout_columnWeight="0"
-            android:id="@+id/campoCategoria"
             android:hint="@string/hintCat"
-            android:inputType="text"
-            />
+            android:inputType="text" />
 
         <Button
+            android:id="@+id/btnAgregarCategoria"
             android:layout_width="110dp"
             android:layout_height="40dp"
-            android:layout_gravity="center"
+            android:layout_columnSpan="2"
             android:layout_columnWeight="0"
-            android:text="@string/btnAgregarCat"
-            android:textColor="@color/btnAzul"
+            android:layout_gravity="center"
             android:background="@drawable/diseno_button"
-            android:id="@+id/btnAgregarCategoria"
-            />
+            android:text="@string/btnAgregarCat"
+            android:textColor="@color/btnAzul" />
 
     </GridLayout>
 

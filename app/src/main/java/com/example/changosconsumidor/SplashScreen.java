@@ -9,7 +9,7 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_home2);
+        setContentView(R.layout.activity_splash_screen);
         new Thread(new Runnable() {
             public void run() {
                 startApp();
@@ -24,7 +24,7 @@ public class SplashScreen extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Intent intent = new Intent(this, Home.class);
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }//startApp()
 }
