@@ -129,7 +129,7 @@ public class Product {
             products=prodDBH.getAll(context);
 
             for(int i=0;i<products.size();i++){
-                if (products.get(i).getCategory()==category) {
+                if (products.get(i).getCategory().getId()==category.getId()) {
                     prodCat.add(products.get(i));
 
                 }
