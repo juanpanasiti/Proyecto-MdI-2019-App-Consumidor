@@ -1,9 +1,11 @@
 package com.example.changosconsumidor;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -23,6 +25,7 @@ public class DeleteModifyCategory extends AppCompatActivity {
     private Product prod = new Product();
     private ArrayList<Product> arrProductos;
     private ArrayList<String> arrProductosStr;
+    ArrayAdapter arrAdp;
     private int idExtra;
     CategoryDBHelper admin = new CategoryDBHelper(DeleteModifyCategory.this);
 
@@ -40,12 +43,16 @@ public class DeleteModifyCategory extends AppCompatActivity {
         listaProductos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
-
+                Intent intent = new Intent(DeleteModifyCategory.this, DeleteModifyProduct.class);
+                intent.putExtra("id", arrProductos.get(i).getID());
+                startActivity(intent);
             }
         });
+
+        category.setText(categoryExtra);
     }
 
-    public void onClickDeleteModify(View view) {
+    public void onClickDeleteModifyCat(View view) {
         if (view.getId() == R.id.btnModificarCategoria) {
             cat = new Category();
             cat.setId(idExtra);
@@ -54,15 +61,18 @@ public class DeleteModifyCategory extends AppCompatActivity {
         } else if (view.getId() == R.id.btnEliminarCategoria) {
             cat = new Category();
             cat.setId(idExtra);
-            cat.setName(category.getText().toString());
             admin.deleteCategory(cat, DeleteModifyCategory.this);
         }
     }
 
     public void llenarListaProducto(View view) {
-        //arrProductos = prod.traerTodo(DeleteModifyCategory.class);
+        cat = new Category();
+        cat.setId(idExtra);
+        //arrProductos = prod.traerTodo(DeleteModifyCategory.class, cat);
         for (int i = 0; i < arrProductos.size(); i++) {
             arrProductosStr.add(arrProductos.get(i).getName());
         }
+        arrAdp = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,arrProductosStr);
+        listaProductos.setAdapter(arrAdp);
     }
 }

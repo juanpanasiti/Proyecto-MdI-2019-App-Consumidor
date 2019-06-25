@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".DeleteModifyCategory">
+    tools:context=".DeleteModifyProduct">
 
     <ImageButton
         android:layout_width="100dp"
         android:layout_height="40dp"
-        android:id="@+id/btn_de_delete_modify_a_newCat"
+        android:id="@+id/btn_de_prod_a_cat"
         />
 
     <GridLayout
@@ -28,7 +29,7 @@
             android:layout_width="280dp"
             android:layout_height="40dp"
             android:layout_columnWeight="0"
-            android:id="@+id/campoCategoriaDelMod"
+            android:id="@+id/campoProductoDelMod"
             android:inputType="text"
             />
 
@@ -37,32 +38,25 @@
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:layout_columnWeight="0"
-            android:text="@string/btnEditarCat"
+            android:text="@string/btnEditarProd"
             android:textColor="@color/btnAzul"
             android:background="@drawable/diseno_button"
-            android:id="@+id/btnModificarCategoria"
+            android:id="@+id/btnModificarProducto"
             />
 
         <Button
             android:layout_width="110dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
-            android:text="@string/btnEliminarCat"
+            android:text="@string/btnEliminarProd"
             android:textColor="@color/btnAzul"
             android:background="@drawable/diseno_button"
-            android:id="@+id/btnEliminarCategoria"
+            android:id="@+id/btnEliminarProducto"
             android:layout_row="1"
             android:layout_column="1"
 
             />
 
     </GridLayout>
-
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/listProductos"
-        android:layout_marginTop="20dp">
-    </ListView>
 
 </LinearLayout>
