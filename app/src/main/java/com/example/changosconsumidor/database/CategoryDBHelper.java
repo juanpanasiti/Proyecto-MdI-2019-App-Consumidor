@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteStatement;
 import android.widget.Toast;
 
 import com.example.changosconsumidor.model.Category;
+import com.example.changosconsumidor.model.Product;
 
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -89,4 +90,24 @@ public class CategoryDBHelper extends AdminSQLiteOpenHelper{
         }
         return categories;
     }//getAll()
+
+    public ArrayList<Product> getProductsByCategory(Context context, int categoryID){
+        ArrayList<Product> productos = new ArrayList<>();
+
+        Cursor cursor = super.findByFilter(DB_TABLE,DB_ALL_COLUMNS,"category_id=" + categoryID,null);
+        while (cursor.moveToNext()){
+            Product product = new Product();
+
+            product.setID(cursor.getInt(0));
+            product.setMark(cursor.getString(1));
+            product.setName(cursor.getString(2));
+            product.setContentQuantity(cursor.getFloat(3));
+            product.setContentUnit(cursor.getString(4));
+            CategoryDBHelper catDBH = new CategoryDBHelper(context);
+            product.setCategory(catDBH.findByID(cursor.getInt(5),context));
+
+            productos.add(product);
+        }
+        return productos;
+    }
 }//CLASS
