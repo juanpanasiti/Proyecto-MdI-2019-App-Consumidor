@@ -7,47 +7,45 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.changosconsumidor.database.CategoryDBHelper;
 import com.example.changosconsumidor.model.Category;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class CategoriasActivity extends AppCompatActivity {
 
     private ListView listaCategorias;
     private EditText et_categoria;
-    List<String> categorias;
+    private ArrayList<Category> arrCategorias;
+    ArrayList<String> arrCategoriasStr;
     ArrayAdapter arrAdp;
     private Category cat;
+    private CategoryDBHelper admin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categorias);
 
+        admin = new CategoryDBHelper(CategoriasActivity.this);
+
         et_categoria = (EditText) findViewById(R.id.campoCategoria);
         listaCategorias = (ListView) findViewById(R.id.listCategorias);
 
         listaCategorias.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
                 Intent intent = new Intent(getApplicationContext(), DeleteModifyCategory.class);
-                intent.putExtra("categoria", listaCategorias.getSelectedView().toString());
+                intent.putExtra("categoria", arrCategoriasStr.get(i));
+                intent.putExtra("id", arrCategorias.get(i).getId());
                 startActivity(intent);
             }
         });
 
-        //Prueba---------------------------------------
-        categorias = new ArrayList<>();
-        arrAdp = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,categorias);
-        listaCategorias.setAdapter(arrAdp);
-        listaCategorias.setBackgroundColor(Color.BLACK);
-        //---------------------------------------------
 
     }
 
@@ -57,12 +55,21 @@ public class CategoriasActivity extends AppCompatActivity {
                 Toast.makeText(CategoriasActivity.this, "Hay campos vacios", Toast.LENGTH_SHORT).show();
             } else {
                 cat = new Category();
-                //cat.setId();
                 cat.setName(et_categoria.getText().toString());
+                admin.createCategory(cat, CategoriasActivity.this);
             }
         } else if (view.getId() == R.id.btn_de_cat_a_home) {
             Intent intent = new Intent(CategoriasActivity.this, HomeActivity.class);
             startActivity(intent);
         }
+    }
+
+    public void llenarListaCategorias(View view) {
+        arrCategorias = admin.getAll(CategoriasActivity.this);
+        for(int i = 0; i < arrCategorias.size(); i++) {
+            arrCategoriasStr.add(arrCategorias.get(i).getName());
+        }
+        arrAdp = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,arrCategoriasStr);
+        listaCategorias.setAdapter(arrAdp);
     }
 }

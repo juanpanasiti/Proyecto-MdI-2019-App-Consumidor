@@ -92,7 +92,7 @@ public class Product {
         }
     }
     //find id
-    public boolean Buscar(Context context){
+    public boolean buscar(Context context){
         ProductDBHelper prodDBH = new ProductDBHelper(context);
         try{
             prodDBH.findByID(id,context);//revisa!!!!!!!!
@@ -104,7 +104,7 @@ public class Product {
         }
     }
     //deleteproduct
-    public boolean BorrarReg(Context context){
+    public boolean borrarReg(Context context){
         ProductDBHelper prodDBH = new ProductDBHelper(context);
         try{
             prodDBH.deleteProduct(this,context);
@@ -116,7 +116,7 @@ public class Product {
         }
     }
     //getall
-    public boolean traertodo(Context context){
+    public boolean traerTodo(Context context){
         ProductDBHelper prodDBH = new ProductDBHelper(context);
         try{
             prodDBH.getAll(context);//revisa!!!!!!!!

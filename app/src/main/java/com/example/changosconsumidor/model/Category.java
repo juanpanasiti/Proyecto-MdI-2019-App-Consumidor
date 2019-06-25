@@ -3,7 +3,7 @@ package com.example.changosconsumidor.model;
 import java.util.ArrayList;
 
 public class Category {
-    private int id;
+    private int id = 0;
     private String name;
     private Category father;
     private ArrayList<Product> products;

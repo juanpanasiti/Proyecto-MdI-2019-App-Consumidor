@@ -20,6 +20,9 @@
 
     <!-- Productos -->
     <string name="hintProd">Ingresar producto</string>
+    <string name="hintMarcaProd">Ingresar Marca</string>
+    <string name="hintContentUnit">Ingresar tipo de medida</string>
+    <string name="hintContentQuantity">Ingresar cantidad</string>
     <string name="btnAgregarProd">Agregar</string>
     <string name="btnEliminarProd">Eliminar</string>
     <string name="btnEditarProd">Editar</string>

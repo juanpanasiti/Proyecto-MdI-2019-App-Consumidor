@@ -59,4 +59,11 @@
 
     </GridLayout>
 
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/listProductos"
+        android:layout_marginTop="20dp">
+    </ListView>
+
 </LinearLayout>
