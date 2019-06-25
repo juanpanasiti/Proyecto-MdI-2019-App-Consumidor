@@ -78,27 +78,27 @@ public class BuyList {
 
     // Metodos
 
-    public boolean crear(Context context){
+    public void crear(Context context){
         BuyListDBHelper buyListDBH = new BuyListDBHelper(context);
         try{
             buyListDBH.createBuyList(this, context);
             Toast.makeText(context, "Lista de Compras Creada", Toast.LENGTH_SHORT).show();
-            return true;
+
         } catch (Exception e){
             Toast.makeText(context, "Error al crear Lista de Compras" + e.getMessage(), Toast.LENGTH_SHORT).show();
-            return false;
+
         }
     }
     //createproduct
-    public boolean modificar(Context context){
+    public void modificar(Context context){
         BuyListDBHelper buyListDBH = new BuyListDBHelper(context);
         try{
             buyListDBH.updateBuyList(this, context);
             Toast.makeText(context, "Lista de Compras Modificada", Toast.LENGTH_SHORT).show();
-            return true;
+
         } catch (Exception e){
             Toast.makeText(context, "Error al Modificar Lista de Compras" + e.getMessage(), Toast.LENGTH_SHORT).show();
-            return false;
+
         }
     }
     //updateBuy list
