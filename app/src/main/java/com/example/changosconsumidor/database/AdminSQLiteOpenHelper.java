@@ -28,7 +28,6 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
         String sqlCategories = "CREATE TABLE categories(" +
                                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                                 "name TEXT NOT NULL," +
-                                "father_id INTEGER" +
                                 ")";
 
         //Tabla PRODUCTS

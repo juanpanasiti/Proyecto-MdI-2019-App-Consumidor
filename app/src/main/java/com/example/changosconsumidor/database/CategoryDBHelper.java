@@ -3,18 +3,15 @@ package com.example.changosconsumidor.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteStatement;
 import android.widget.Toast;
 
 import com.example.changosconsumidor.model.Category;
 
 import java.util.ArrayList;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 public class CategoryDBHelper extends AdminSQLiteOpenHelper{
     private static final String DB_TABLE = "categories";//nombre de la tabla
-    private static final String[] DB_ALL_COLUMNS = {"id","name","father"};
+    private static final String[] DB_ALL_COLUMNS = {"id","name"};
 
     public CategoryDBHelper(Context context) {
         super(context);
@@ -24,7 +21,6 @@ public class CategoryDBHelper extends AdminSQLiteOpenHelper{
         try{
             ContentValues record = new ContentValues();
             record.put("name",category.getName());
-            record.put("father", category.getFatherID());
 
             super.create(record,DB_TABLE);
 
@@ -41,7 +37,6 @@ public class CategoryDBHelper extends AdminSQLiteOpenHelper{
         try{
             ContentValues record = new ContentValues();
             record.put("name",category.getName());
-            record.put("father", category.getFatherID());
 
             super.update(record,DB_TABLE,whereClause,whereArgs);
 
@@ -59,7 +54,6 @@ public class CategoryDBHelper extends AdminSQLiteOpenHelper{
             cursor.moveToFirst();
             category.setId(cursor.getInt(0));
             category.setName(cursor.getString(1));
-            category.setFather(this.findByID(cursor.getInt(2),context));
         }
         return category;
     }//findByID()
@@ -83,7 +77,6 @@ public class CategoryDBHelper extends AdminSQLiteOpenHelper{
 
             category.setId(cursor.getInt(0));
             category.setName(cursor.getString(1));
-            category.setFather(this.findByID(cursor.getInt(2),context));
 
             categories.add(category);
         }
