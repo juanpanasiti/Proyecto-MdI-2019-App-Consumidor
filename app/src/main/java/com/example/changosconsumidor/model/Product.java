@@ -7,6 +7,8 @@ import android.widget.Toast;
 
 import com.example.changosconsumidor.database.ProductDBHelper;
 
+import java.util.ArrayList;
+
 
 public class Product {
     private int id;
@@ -68,64 +70,76 @@ public class Product {
 
 // Metodos
     //createproduct
-    public boolean crear(Context context){
+    public void crear(Context context){
         ProductDBHelper prodDBH = new ProductDBHelper(context);
         try{
             prodDBH.createProduct(this, context);
             Toast.makeText(context, "Producto creado", Toast.LENGTH_SHORT).show();
-            return true;
+
         } catch (Exception e){
             Toast.makeText(context, "Error al crear producto " + e.getMessage(), Toast.LENGTH_SHORT).show();
-            return false;
+
         }
     }
     //update
-    public boolean modificar(Context context){
+    public void modificar(Context context){
         ProductDBHelper prodDBH = new ProductDBHelper(context);
         try{
             prodDBH.updateProduct(this, context);
             Toast.makeText(context,"Producto modificado ",Toast.LENGTH_SHORT).show();
-            return true;
+
         } catch (Exception e){
             Toast.makeText(context, "Error al crear producto"+e.getMessage(), Toast.LENGTH_SHORT).show();
-            return false;
+
         }
     }
     //find id
-    public boolean buscar(Context context){
+    public Product buscar(Context context){
         ProductDBHelper prodDBH = new ProductDBHelper(context);
+        Product product = new Product();
+
         try{
-            prodDBH.findByID(id,context);//revisa!!!!!!!!
+            product=prodDBH.findByID(id,context);//revisa!!!!!!!!
             Toast.makeText(context,"Producto encontrado",Toast.LENGTH_SHORT).show();
-            return true;
+
         } catch (Exception e){
             Toast.makeText(context, "Producto no encontrado"+e.getMessage(), Toast.LENGTH_SHORT).show();
-            return false;
+
         }
+        return product;
     }
     //deleteproduct
-    public boolean borrarReg(Context context){
+    public void borrarReg(Context context){
         ProductDBHelper prodDBH = new ProductDBHelper(context);
         try{
             prodDBH.deleteProduct(this,context);
             Toast.makeText(context,"Registro borrado",Toast.LENGTH_SHORT).show();
-            return true;
+
         } catch (Exception e){
             Toast.makeText(context, "Registro no borrado"+e.getMessage(), Toast.LENGTH_SHORT).show();
-            return false;
+
         }
     }
     //getall
-    public boolean traerTodo(Context context){
+    public ArrayList<Product> traerTodo(Context context, Category category){
         ProductDBHelper prodDBH = new ProductDBHelper(context);
+        ArrayList<Product> products = new ArrayList<>();
+        ArrayList<Product>prodCat=new ArrayList<>();
         try{
-            prodDBH.getAll(context);//revisa!!!!!!!!
+            products=prodDBH.getAll(context);
+
+            for(int i=0;i<products.size();i++){
+                if (products.get(i).getCategory().getId()==category.getId()) {
+                    prodCat.add(products.get(i));
+
+                }
+            }
+
             Toast.makeText(context,"Producto encontrado",Toast.LENGTH_SHORT).show();
-            return true;
         } catch (Exception e){
             Toast.makeText(context, "Producto no encontrado"+e.getMessage(), Toast.LENGTH_SHORT).show();
-            return false;
         }
+        return prodCat;
     }
 
     }

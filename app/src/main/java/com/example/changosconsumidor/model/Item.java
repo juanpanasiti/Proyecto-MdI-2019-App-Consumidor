@@ -5,6 +5,8 @@ import android.widget.Toast;
 
 import com.example.changosconsumidor.database.ItemDBHelper;
 
+import java.util.ArrayList;
+
 
 public class Item {
     private Product product;
@@ -68,71 +70,85 @@ public class Item {
 
 //metodos crear modificar borrar y buscar
 
-    public boolean crear(Context context){
+    public void crear(Context context){
         ItemDBHelper ItemDBH = new ItemDBHelper(context);
         try{
             ItemDBH.createItem(this, context);
             Toast.makeText(context, "Item creado correctamente", Toast.LENGTH_SHORT).show();
-            return true;
+
         } catch (Exception e){
             Toast.makeText(context, "Error al crear Item " + e.getMessage(), Toast.LENGTH_SHORT).show();
-            return false;
+
         }
     }
 
 
     //update
 
-    public boolean modificar(Context context){
+    public void modificar(Context context){
         ItemDBHelper ItemDBH = new ItemDBHelper(context);
         try{
             ItemDBH.updateItem(this, context);
             Toast.makeText(context,"Item modificado ",Toast.LENGTH_SHORT).show();
-            return true;
+
         } catch (Exception e){
             Toast.makeText(context, "Error al modificar"+e.getMessage(), Toast.LENGTH_SHORT).show();
-            return false;
+
         }
     }
     //find id
-    public boolean Buscar(Context context){
+    public Item Buscar(Context context){
         ItemDBHelper ItemDBH = new ItemDBHelper(context);
+        Item item = new Item();
+
         try{
-            ItemDBH.findByID(id,context);//revisa!!!!!!!!
+            item=ItemDBH.findByID(id,context);//revisa!!!!!!!!
             Toast.makeText(context,"Item encontrado",Toast.LENGTH_SHORT).show();
-            return true;
+
         } catch (Exception e){
             Toast.makeText(context, "Item no encontrado"+e.getMessage(), Toast.LENGTH_SHORT).show();
-            return false;
+
         }
+        return item;
     }
 
     //deleteproduct
 
-    public boolean BorrarReg(Context context){
+    public void BorrarReg(Context context){
         ItemDBHelper ItemDBH = new ItemDBHelper(context);
         try{
             ItemDBH.deleteItem(this,context);
             Toast.makeText(context,"Item borrado",Toast.LENGTH_SHORT).show();
-            return true;
+
         } catch (Exception e){
             Toast.makeText(context, "Item no borrado"+e.getMessage(), Toast.LENGTH_SHORT).show();
-            return false;
+
         }
     }
 
     //getall
 
-    public boolean traertodo(Context context){
+    public ArrayList<Item> traertodo(Context context, Item it){
         ItemDBHelper ItemDBH = new ItemDBHelper(context);
+        ArrayList<Item> item = new ArrayList<>();
+        ArrayList<Item> items = new ArrayList<>();
         try{
+            item = ItemDBH.getAll(context);
+            for (int i = 0; i < item.size(); i++) {
+                if (item.get(i).getID() == it.getID()) {
+                    items.add(item.get(i));
+
+
+                }
+            }
             ItemDBH.getAll(context);
             Toast.makeText(context,"Items cargados",Toast.LENGTH_SHORT).show();
-            return true;
+
         } catch (Exception e){
             Toast.makeText(context, "Items no cargados"+e.getMessage(), Toast.LENGTH_SHORT).show();
-            return false;
+
         }
+        return items;
     }
 
 }
