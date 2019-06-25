@@ -31,8 +31,6 @@ public class CategoriasActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categorias);
 
-        admin = new CategoryDBHelper(CategoriasActivity.this);
-
         et_categoria = (EditText) findViewById(R.id.campoCategoria);
         listaCategorias = (ListView) findViewById(R.id.listCategorias);
 
