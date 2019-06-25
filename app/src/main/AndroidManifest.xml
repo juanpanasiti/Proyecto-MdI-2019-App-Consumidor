@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ListaActivity"></activity>
+        <activity android:name=".DeleteModifyCategory"></activity>
+        <activity android:name=".ListaActivity" />
         <activity android:name=".ProductosActivity" />
         <activity android:name=".CategoriasActivity" />
         <activity android:name=".HomeActivity" />

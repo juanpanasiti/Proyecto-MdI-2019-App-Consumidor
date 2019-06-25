@@ -16,7 +16,7 @@ public class CategoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_category);
 
         tvTest = findViewById(R.id.tvTest);
-        tvTest.setText("Registros: " + CategoryDBHelper.countCategories(this));
+        //tvTest.setText("Registros: " + CategoryDBHelper.countCategories(this));
 
     }//onCreate()
 
