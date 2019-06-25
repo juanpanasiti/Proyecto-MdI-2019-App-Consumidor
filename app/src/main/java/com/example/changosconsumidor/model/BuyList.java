@@ -128,7 +128,7 @@ public class BuyList {
     }
 
     //deleteBuyList
-    public boolean traertodo(Context context, BuyList bl) {
+    public ArrayList<BuyList> traertodo(Context context, BuyList bl) {
         BuyListDBHelper buyListDBH = new BuyListDBHelper(context);
         ArrayList<BuyList> buyLists = new ArrayList<>();
         ArrayList<BuyList> buyLi = new ArrayList<>();
@@ -143,11 +143,12 @@ public class BuyList {
             }
             buyListDBH.getAll(context);
             Toast.makeText(context, "Lista de compra Completa", Toast.LENGTH_SHORT).show();
-            return true;
+
         } catch (Exception e) {
             Toast.makeText(context, "Error al Cargar Lista de Compras" + e.getMessage(), Toast.LENGTH_SHORT).show();
-            return false;
+
         }
+        return buyLi;
     }
 
 }
