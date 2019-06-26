@@ -10,7 +10,7 @@ import com.example.changosconsumidor.model.Product;
 
 public class DeleteModifyProduct extends AppCompatActivity {
 
-    private EditText campoProductoDelMod;
+    private EditText campoProductoMod, campoMarcaMod, campoContentQuantityMod, campoContentUnitMod;
     private Product prod;
     private int idExtra;
 
@@ -19,9 +19,18 @@ public class DeleteModifyProduct extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_modify_product);
 
-        campoProductoDelMod = (EditText) findViewById(R.id.campoProductoDelMod);
+        campoProductoMod = (EditText) findViewById(R.id.campoProductoMod);
+        campoMarcaMod = (EditText) findViewById(R.id.campoMarcaMod);
+        campoContentQuantityMod = (EditText) findViewById(R.id.campoContentQuantityMod);
+        campoContentUnitMod = (EditText) findViewById(R.id.campoContentUnitMod);
 
         idExtra = getIntent().getIntExtra("id",0);
+        buscarId(idExtra);
+
+        campoProductoMod.setText(prod.getName());
+        campoMarcaMod.setText(prod.getMark());
+        campoContentQuantityMod.setText(String.valueOf(prod.getContentQuantity()));
+        campoContentUnitMod.setText(prod.getContentUnit());
 
     }
 
@@ -34,16 +43,21 @@ public class DeleteModifyProduct extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.btnModificarProducto:
+                prod.setName(campoProductoMod.getText().toString());
+                prod.setMark(campoMarcaMod.getText().toString());
+                prod.setContentQuantity((float)Double.parseDouble(campoContentQuantityMod.getText().toString()));
+                prod.setContentUnit(campoContentUnitMod.getText().toString());
                 prod.modificar(DeleteModifyProduct.this);
                 break;
             case R.id.btnEliminarProducto:
-                prod.borrarReg(DeleteModifyProduct.this);
+                //prod.borrarReg(DeleteModifyProduct.this, idExtra);
                 break;
+
         }
 
     }
 
-    public void buscarId(int idExtra) {
-        //prod = prod.buscar(idExtra);
+    public void buscarId(int id) {
+        prod = prod.buscar(DeleteModifyProduct.this, id);
     }
 }

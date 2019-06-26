@@ -94,17 +94,14 @@ public class Product {
         }
     }
     //find id
-    public Product buscar(Context context){
+    public Product buscar(Context context, int id){
         ProductDBHelper prodDBH = new ProductDBHelper(context);
         Product product = new Product();
-
         try{
-            product=prodDBH.findByID(id,context);//revisa!!!!!!!!
+            product = prodDBH.findByID(id,context);
             Toast.makeText(context,"Producto encontrado",Toast.LENGTH_SHORT).show();
-
         } catch (Exception e){
             Toast.makeText(context, "Producto no encontrado"+e.getMessage(), Toast.LENGTH_SHORT).show();
-
         }
         return product;
     }

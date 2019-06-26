@@ -34,6 +34,8 @@ public class CategoriasActivity extends AppCompatActivity {
         et_categoria = (EditText) findViewById(R.id.campoCategoria);
         listaCategorias = (ListView) findViewById(R.id.listCategorias);
 
+        llenarListaCategorias();
+
         listaCategorias.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
@@ -62,8 +64,8 @@ public class CategoriasActivity extends AppCompatActivity {
         }
     }
 
-    public void llenarListaCategorias(View view) {
-        arrCategorias = admin.getAll(CategoriasActivity.this);
+    public void llenarListaCategorias() {
+        //arrCategorias = cat.traerTodo(CategoriasActivity.this);
         for(int i = 0; i < arrCategorias.size(); i++) {
             arrCategoriasStr.add(arrCategorias.get(i).getName());
         }

@@ -39,6 +39,8 @@ public class DeleteModifyCategory extends AppCompatActivity {
         idExtra = getIntent().getIntExtra("id",0);
         category.setText(categoryExtra);
 
+        llenarListaProducto();
+
         listaProductos = (ListView) findViewById(R.id.listProductos);
         listaProductos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -65,10 +67,10 @@ public class DeleteModifyCategory extends AppCompatActivity {
         }
     }
 
-    public void llenarListaProducto(View view) {
+    public void llenarListaProducto() {
         cat = new Category();
         cat.setId(idExtra);
-        //arrProductos = prod.traerTodo(DeleteModifyCategory.class, cat);
+        arrProductos = prod.traerTodo(DeleteModifyCategory.this, cat);
         for (int i = 0; i < arrProductos.size(); i++) {
             arrProductosStr.add(arrProductos.get(i).getName());
         }
