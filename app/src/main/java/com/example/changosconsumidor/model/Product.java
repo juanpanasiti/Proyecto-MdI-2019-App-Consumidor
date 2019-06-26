@@ -69,18 +69,17 @@ public class Product {
     }
 
 // Metodos
-    //createproduct
-    public void crear(Context context){
+    //Crea un producto a partir del contexto y el producto por parametros
+    public void crear(Context context, Product product){
         ProductDBHelper prodDBH = new ProductDBHelper(context);
         try{
-            prodDBH.createProduct(this, context);
+            prodDBH.createProduct(product, context);
             Toast.makeText(context, "Producto creado", Toast.LENGTH_SHORT).show();
-
         } catch (Exception e){
             Toast.makeText(context, "Error al crear producto " + e.getMessage(), Toast.LENGTH_SHORT).show();
-
         }
     }
+
     //update
     public void modificar(Context context, Product product){
         ProductDBHelper prodDBH = new ProductDBHelper(context);

@@ -2,10 +2,10 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProductosActivity"
+    android:orientation="vertical"
+    tools:context=".AgregarItem"
     tools:ignore="Autofill">
 
     <Button
@@ -16,9 +16,11 @@
         android:background="@drawable/diseno_button"
         android:layout_marginTop="20dp"
         android:layout_marginStart="10dp"
-        android:id="@+id/btn_de_prod_a_home"
-        android:onClick="onClickAgregarProd"
+        android:id="@+id/btn_de_agregarItem_a_list"
+        android:onClick="onClickAgregarItem"
         />
+
+
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -35,60 +37,49 @@
             android:text="@string/btnAgregarProd"
             android:textColor="@color/btnAzul"
             android:background="@drawable/diseno_button"
-            android:id="@+id/btnAgregarProducto"
-            android:onClick="onClickAgregarProd"
+            android:id="@+id/btnAgregarItemFinal"
+            android:onClick="onClickAgregarItem"
             />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@id/btnAgregarItemFinal"
+            android:id="@+id/spinnerCategoriasDeItem"
+            android:layout_marginTop="10dp"
+            >
+        </Spinner>
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@id/btnAgregarItemFinal"
+            android:id="@+id/spinnerProductoDeItem"
+            android:layout_below="@id/spinnerCategoriasDeItem"
+            android:layout_marginTop="20dp"
+            >
+        </Spinner>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/campoProducto"
-            android:hint="@string/hintProd"
-            android:inputType="text"
-            android:layout_toStartOf="@+id/btnAgregarProducto"
-            />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/campoMarca"
-            android:hint="@string/hintMarcaProd"
-            android:inputType="text"
-            android:layout_toStartOf="@+id/btnAgregarProducto"
-            android:layout_below="@id/campoProducto"
-            />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/campoContentQuantity"
+            android:id="@+id/campoCantidad"
             android:hint="@string/hintContentQuantity"
             android:inputType="number"
-            android:layout_toStartOf="@+id/btnAgregarProducto"
-            android:layout_below="@id/campoMarca"
+            android:layout_toStartOf="@+id/btnAgregarItemFinal"
+            android:layout_below="@id/spinnerProductoDeItem"
             />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/campoContentUnit"
-            android:hint="@string/hintContentUnit"
-            android:inputType="text"
-            android:layout_toStartOf="@+id/btnAgregarProducto"
-            android:layout_below="@id/campoContentQuantity"
+            android:id="@+id/campoPrecio"
+            android:hint="@string/precio"
+            android:inputType="numberDecimal"
+            android:layout_toStartOf="@+id/btnAgregarItemFinal"
+            android:layout_below="@id/campoCantidad"
             />
 
     </RelativeLayout>
-
-    <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:id="@+id/spinnerCategorias"
-        >
-    </Spinner>
 
 </LinearLayout>

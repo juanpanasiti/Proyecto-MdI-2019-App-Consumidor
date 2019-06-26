@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DeleteModifyProduct"></activity>
+        <activity android:name=".AgregarItem"></activity>
+        <activity android:name=".DeleteModifyProduct" />
         <activity android:name=".DeleteModifyCategory" />
         <activity android:name=".ListaActivity" />
         <activity android:name=".ProductosActivity" />
@@ -20,8 +21,7 @@
         <activity android:name=".CategoryActivity" />
         <activity android:name=".Registro" />
         <activity android:name=".PantallaDeMuestra" />
-        <activity android:name=".MainRegistro" />
-        <!--suppress AndroidDomInspection -->
+        <activity android:name=".MainRegistro" /> <!-- suppress AndroidDomInspection -->
         <activity
             android:name=".SplashScreen"
             android:configChanges="orientation|keyboardHidden|screenSize"

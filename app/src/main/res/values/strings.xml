@@ -30,4 +30,13 @@
     <string name="btnEliminarProd">Eliminar</string>
     <string name="btnEditarProd">Editar</string>
 
+    <!-- Listas -->
+    <string name="listaProd">Lista de Items</string>
+    <string name="btnAgregarItem">Agregar</string>
+
+    <!-- Agregar Items -->
+    <string name="cantidad">Cantidad</string>
+    <string name="precio">Precio</string>
+
+
 </resources>

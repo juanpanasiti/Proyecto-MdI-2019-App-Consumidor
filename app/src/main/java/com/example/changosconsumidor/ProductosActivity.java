@@ -40,18 +40,22 @@ public class ProductosActivity extends AppCompatActivity {
         campoContentQuantity = (EditText) findViewById(R.id.campoContentQuantity);
         campoContentUnit = (EditText) findViewById(R.id.campoContentUnit);
 
+        rellenarSpinnerCategorias();
+
     }
 
     public void onClickAgregarProd(View view) {
         if (view.getId() == R.id.btnAgregarProducto) {
-            if (campoProducto.getText().toString().isEmpty()) {
-                Toast.makeText(ProductosActivity.this, "Campo Producto Vacio", Toast.LENGTH_SHORT).show();
+            if (campoProducto.getText().toString().isEmpty() || campoMarca.getText().toString().isEmpty() || campoContentQuantity.getText().toString().isEmpty() || campoContentUnit.getText().toString().isEmpty()) {
+                Toast.makeText(ProductosActivity.this, "Hay campos vacios", Toast.LENGTH_SHORT).show();
             } else {
                 prod.setName(campoProducto.getText().toString());
                 prod.setCategory(arrCategorias.get(spinnerCategorias.getSelectedItemPosition()));
                 prod.setContentQuantity((float)Double.parseDouble(campoContentQuantity.getText().toString()));
                 prod.setContentUnit(campoContentUnit.getText().toString()); //Tipo de unidad de medidad
                 prod.setMark(campoMarca.getText().toString());
+                prod.crear(ProductosActivity.this, prod);
+                limpiarCampos();
             }
         } else if(view.getId() == R.id.btn_de_prod_a_home) {
             Intent intent = new Intent(ProductosActivity.this, HomeActivity.class);
@@ -60,7 +64,9 @@ public class ProductosActivity extends AppCompatActivity {
     }
 
     private void rellenarSpinnerCategorias() {
+        arrCategorias = new ArrayList<>();
         arrCategorias = cat.traerTodo(ProductosActivity.this);
+        arrCategoriasStr = new ArrayList<>();
         for(int i = 0; i < arrCategorias.size(); i++) {
             arrCategoriasStr.add(arrCategorias.get(i).getName());
         }
@@ -68,4 +74,10 @@ public class ProductosActivity extends AppCompatActivity {
         spinnerCategorias.setAdapter(categorias);
     }
 
+    public void limpiarCampos() {
+        campoProducto.setText("");
+        campoMarca.setText("");
+        campoContentQuantity.setText("");
+        campoContentUnit.setText("");
+    }
 }
