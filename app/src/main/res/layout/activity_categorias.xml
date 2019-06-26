@@ -10,46 +10,56 @@
     <ImageButton
         android:layout_width="100dp"
         android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
         android:id="@+id/btn_de_cat_a_home"
         android:onClick="onClickAgregarCat"
         />
 
-    <GridLayout
-        android:alignmentMode="alignMargins"
-        android:columnOrderPreserved="false"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:textSize="30dp"
+        android:text="@string/titleCategories"/>
 
-        <EditText
-            android:layout_width="280dp"
-            android:layout_height="40dp"
-            android:layout_columnWeight="0"
-            android:id="@+id/campoCategoria"
-            android:hint="@string/hintCat"
-            android:inputType="text"
-            />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        >
 
         <Button
-            android:layout_width="110dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:layout_columnWeight="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/btnAgregarCat"
             android:textColor="@color/btnAzul"
             android:background="@drawable/diseno_button"
             android:id="@+id/btnAgregarCategoria"
             android:onClick="onClickAgregarCat"
+            android:layout_alignParentRight="true"
             />
 
-    </GridLayout>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/campoCategoria"
+            android:hint="@string/hintCat"
+            android:inputType="text"
+            android:layout_toLeftOf="@+id/btnAgregarCategoria"
+            />
+
+    </RelativeLayout>
+
 
     <ListView
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/listCategorias"
         ></ListView>
 

@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.changosconsumidor.database.AdminSQLiteOpenHelper;
 import com.example.changosconsumidor.database.CategoryDBHelper;
@@ -21,27 +22,29 @@ public class DeleteModifyCategory extends AppCompatActivity {
     private String categoryExtra;
     private EditText category;
     private ListView listaProductos;
+    private TextView categoriaMostrar;
     private Category cat;
     private Product prod = new Product();
     private ArrayList<Product> arrProductos;
     private ArrayList<String> arrProductosStr;
     ArrayAdapter arrAdp;
     private int idExtra;
-    CategoryDBHelper admin = new CategoryDBHelper(DeleteModifyCategory.this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_modify_category);
 
+        categoriaMostrar = (TextView) findViewById(R.id.categoriaMostrar);
         category = (EditText) findViewById(R.id.campoCategoriaDelMod);
+        listaProductos = (ListView) findViewById(R.id.listProductos);
+
         categoryExtra = getIntent().getStringExtra("categoria");
         idExtra = getIntent().getIntExtra("id",0);
         category.setText(categoryExtra);
 
         llenarListaProducto();
 
-        listaProductos = (ListView) findViewById(R.id.listProductos);
         listaProductos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
@@ -52,18 +55,26 @@ public class DeleteModifyCategory extends AppCompatActivity {
         });
 
         category.setText(categoryExtra);
+        categoriaMostrar.setText(categoryExtra);
     }
 
     public void onClickDeleteModifyCat(View view) {
-        if (view.getId() == R.id.btnModificarCategoria) {
-            cat = new Category();
-            cat.setId(idExtra);
-            cat.setName(category.getText().toString());
-            admin.updateCategory(cat, DeleteModifyCategory.this);
-        } else if (view.getId() == R.id.btnEliminarCategoria) {
-            cat = new Category();
-            cat.setId(idExtra);
-            admin.deleteCategory(cat, DeleteModifyCategory.this);
+        switch (view.getId()) {
+            case R.id.btnModificarCategoria:
+                cat = new Category();
+                cat.setId(idExtra);
+                cat.setName(category.getText().toString());
+                //cat.updateCategory(cat, DeleteModifyCategory.this);
+                break;
+            case R.id.btnEliminarCategoria:
+                cat = new Category();
+                cat.setId(idExtra);
+                //cat.deleteCategory(cat, DeleteModifyCategory.this);
+                break;
+            case R.id.btnDeleteModCat_NewCat:
+                Intent intent = new Intent(DeleteModifyCategory.this, CategoriasActivity.class);
+                startActivity(intent);
+                break;
         }
     }
 
@@ -71,6 +82,7 @@ public class DeleteModifyCategory extends AppCompatActivity {
         cat = new Category();
         cat.setId(idExtra);
         arrProductos = prod.traerTodo(DeleteModifyCategory.this, cat);
+        arrProductosStr = new ArrayList<>();
         for (int i = 0; i < arrProductos.size(); i++) {
             arrProductosStr.add(arrProductos.get(i).getName());
         }

@@ -5,13 +5,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.changosconsumidor.model.Product;
 
 public class DeleteModifyProduct extends AppCompatActivity {
 
     private EditText campoProductoMod, campoMarcaMod, campoContentQuantityMod, campoContentUnitMod;
-    private Product prod;
+    private TextView productoMostrar;
+    private Product prod = new Product();
     private int idExtra;
 
     @Override
@@ -23,10 +25,16 @@ public class DeleteModifyProduct extends AppCompatActivity {
         campoMarcaMod = (EditText) findViewById(R.id.campoMarcaMod);
         campoContentQuantityMod = (EditText) findViewById(R.id.campoContentQuantityMod);
         campoContentUnitMod = (EditText) findViewById(R.id.campoContentUnitMod);
+        productoMostrar = (TextView) findViewById(R.id.productoMostrar);
 
+        /*
+        Capturo el ID enviado al seleccionar el producto y busco el si existe el producto, luego set a los atributos del producto
+        para usarlos
+         */
         idExtra = getIntent().getIntExtra("id",0);
         buscarId(idExtra);
 
+        productoMostrar.setText(prod.getName());
         campoProductoMod.setText(prod.getName());
         campoMarcaMod.setText(prod.getMark());
         campoContentQuantityMod.setText(String.valueOf(prod.getContentQuantity()));
@@ -35,8 +43,6 @@ public class DeleteModifyProduct extends AppCompatActivity {
     }
 
     public void onClickDeleteModifyProd(View view) {
-        prod = new Product();
-        prod.setID(idExtra);
         switch (view.getId()) {
             case R.id.btn_de_prod_a_cat:
                 Intent intent = new Intent(DeleteModifyProduct.this, DeleteModifyCategory.class);

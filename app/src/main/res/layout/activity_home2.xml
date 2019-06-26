@@ -113,7 +113,7 @@
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:src="@drawable/cat_celeste" />
+                        android:src="@drawable/diagrama" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -147,7 +147,7 @@
                     android:layout_height="match_parent">
 
                     <ImageView
-                        android:src="@drawable/cat_celeste"
+                        android:src="@drawable/canasta_comida"
                         android:layout_width="70dp"
                         android:layout_height="70dp" />
 
