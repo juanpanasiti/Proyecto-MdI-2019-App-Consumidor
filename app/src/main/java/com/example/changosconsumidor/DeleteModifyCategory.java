@@ -1,6 +1,7 @@
 package com.example.changosconsumidor;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,16 +20,16 @@ import java.util.ArrayList;
 
 public class DeleteModifyCategory extends AppCompatActivity {
 
-    private String categoryExtra;
     private EditText category;
     private ListView listaProductos;
     private TextView categoriaMostrar;
-    private Category cat;
+    private Category cat = new Category();
     private Product prod = new Product();
     private ArrayList<Product> arrProductos;
     private ArrayList<String> arrProductosStr;
     ArrayAdapter arrAdp;
     private int idExtra;
+    private String categoryExtra;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,7 @@ public class DeleteModifyCategory extends AppCompatActivity {
 
         categoryExtra = getIntent().getStringExtra("categoria");
         idExtra = getIntent().getIntExtra("id",0);
+        categoriaMostrar.setText(categoryExtra);
         category.setText(categoryExtra);
 
         llenarListaProducto();
@@ -54,39 +56,42 @@ public class DeleteModifyCategory extends AppCompatActivity {
             }
         });
 
-        category.setText(categoryExtra);
-        categoriaMostrar.setText(categoryExtra);
     }
 
+    //Listener de los botones de la activity
     public void onClickDeleteModifyCat(View view) {
+        Intent intent = null;
         switch (view.getId()) {
             case R.id.btnModificarCategoria:
-                cat = new Category();
-                cat.setId(idExtra);
                 cat.setName(category.getText().toString());
-                //cat.updateCategory(cat, DeleteModifyCategory.this);
+                cat.modificar(DeleteModifyCategory.this, cat);
+                intent = new Intent(DeleteModifyCategory.this, CategoriasActivity.class);
                 break;
             case R.id.btnEliminarCategoria:
-                cat = new Category();
                 cat.setId(idExtra);
-                //cat.deleteCategory(cat, DeleteModifyCategory.this);
+                cat.borrarReg(DeleteModifyCategory.this, cat);
+                intent = new Intent(DeleteModifyCategory.this, CategoriasActivity.class);
                 break;
             case R.id.btnDeleteModCat_NewCat:
-                Intent intent = new Intent(DeleteModifyCategory.this, CategoriasActivity.class);
-                startActivity(intent);
+                intent = new Intent(DeleteModifyCategory.this, CategoriasActivity.class);
                 break;
+        }
+        if (intent != null) {
+            startActivity(intent);
         }
     }
 
+    //Metodo para traer los productos de la categoria seleccionada y llenar con estos el ListView
     public void llenarListaProducto() {
-        cat = new Category();
         cat.setId(idExtra);
-        arrProductos = prod.traerTodo(DeleteModifyCategory.this, cat);
+        arrProductos = new ArrayList<>();
+        arrProductos = prod.traerProductsCategory(DeleteModifyCategory.this, cat);
         arrProductosStr = new ArrayList<>();
         for (int i = 0; i < arrProductos.size(); i++) {
             arrProductosStr.add(arrProductos.get(i).getName());
         }
         arrAdp = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,arrProductosStr);
         listaProductos.setAdapter(arrAdp);
+        listaProductos.setBackgroundColor(Color.BLACK);
     }
 }

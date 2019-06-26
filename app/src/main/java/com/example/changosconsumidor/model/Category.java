@@ -47,74 +47,60 @@ public class Category {
         ArrayList<Category> categories = new ArrayList<>();
         return categories;
     }
-    // Metodos
 
-    public void crear(Context context) {
+    // Metodos
+    //Crear categoria pasandole el contexto y la categoria con su nombre
+    public void crear(Context context, Category cat) {
         CategoryDBHelper categoryDBHelper = new CategoryDBHelper(context);
         try {
-            categoryDBHelper.createCategory(this, context);
-            Toast.makeText(context, "Categoria Creada", Toast.LENGTH_SHORT).show();
-
+            categoryDBHelper.createCategory(cat, context);
+            Toast.makeText(context, "Categoria creada", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             Toast.makeText(context, "Error al crear Categoria" + e.getMessage(), Toast.LENGTH_SHORT).show();
-
         }
     }
 
-
-
-    //createproduct
-    public void modificar(Context context) {
+    //Modificar categoria pasandole el contexto y la categoria con su ID, obtenido de la base de datos
+    public void modificar(Context context, Category cat) {
         CategoryDBHelper categoryDBHelper = new CategoryDBHelper(context);
         try {
-            categoryDBHelper.updateCategory(this, context);
-            Toast.makeText(context, "Categoria Modificada", Toast.LENGTH_SHORT).show();
-
+            categoryDBHelper.updateCategory(cat, context);
+            Toast.makeText(context, "Categoria modificada", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             Toast.makeText(context, "Error al modificar Categoria" + e.getMessage(), Toast.LENGTH_SHORT).show();
-
         }
     }
 
-    //updateBuy list
-    public Category buscar(Context context) {
+    //Buscar Categoria en la base de datos por su ID
+    public Category buscar(Context context, int id) {
         CategoryDBHelper categoryDBHelper = new CategoryDBHelper(context);
-        Category catego = new Category();
+        Category categoryEncontrada = new Category();
         try {
-            catego = categoryDBHelper.findByID(id, context);
-            Toast.makeText(context, "Categoria Encontrada", Toast.LENGTH_SHORT).show();
-
+            categoryEncontrada = categoryDBHelper.findByID(id, context);
+            Toast.makeText(context, "Categoria encontrada", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
-            Toast.makeText(context, "No se encontro la Categoria" + e.getMessage(), Toast.LENGTH_SHORT).show();
-
+            Toast.makeText(context, "No existe la Categoria" + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
-        return catego;
+        return categoryEncontrada;
     }
 
-    //findeByID
-    public void borrarReg(Context context) {
+    //Borrar Categoria por su id
+    public void borrarReg(Context context, Category cat) {
         CategoryDBHelper categoryDBHelper = new CategoryDBHelper(context);
-        try {
-            categoryDBHelper.deleteCategory(this, context);
-            Toast.makeText(context, "Categoria borrada correctamente", Toast.LENGTH_SHORT).show();
-
-        } catch (Exception e) {
-            Toast.makeText(context, "Error al Borrar Categoria" + e.getMessage(), Toast.LENGTH_SHORT).show();
-
-        }
+        categoryDBHelper.deleteCategory(cat, context);
     }
 
     //Retorna un arrayList con todas las categorias
     public ArrayList<Category> traerTodo(Context context) {
         CategoryDBHelper categoryDBHelper = new CategoryDBHelper(context);
-        ArrayList<Category> category = new ArrayList<>();
+        ArrayList<Category> categoriasEncontradas = new ArrayList<>();
         try {
-            category = categoryDBHelper.getAll(context);
+            categoriasEncontradas = categoryDBHelper.getAll(context);
             Toast.makeText(context, "Lista de Categorias completa", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             Toast.makeText(context, "Error al Cargar Lista de Categorias" + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
-        return category;
+        return categoriasEncontradas;
     }
 
 }

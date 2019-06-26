@@ -5,13 +5,17 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CategoriasActivity">
+    tools:context=".CategoriasActivity"
+    tools:ignore="Autofill">
 
-    <ImageButton
-        android:layout_width="100dp"
-        android:layout_height="40dp"
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Volver"
+        android:textColor="@color/btnAzul"
+        android:background="@drawable/diseno_button"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:id="@+id/btn_de_cat_a_home"
         android:onClick="onClickAgregarCat"
         />
@@ -22,7 +26,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:text="@string/titleCategories"/>
 
     <RelativeLayout
@@ -41,7 +45,7 @@
             android:background="@drawable/diseno_button"
             android:id="@+id/btnAgregarCategoria"
             android:onClick="onClickAgregarCat"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             />
 
         <EditText
@@ -50,18 +54,18 @@
             android:id="@+id/campoCategoria"
             android:hint="@string/hintCat"
             android:inputType="text"
-            android:layout_toLeftOf="@+id/btnAgregarCategoria"
+            android:layout_toStartOf="@id/btnAgregarCategoria"
             />
 
     </RelativeLayout>
 
-
     <ListView
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:id="@+id/listCategorias"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
         ></ListView>
-
 
 </LinearLayout>

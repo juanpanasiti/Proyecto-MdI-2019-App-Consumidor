@@ -82,10 +82,10 @@ public class Product {
         }
     }
     //update
-    public void modificar(Context context){
+    public void modificar(Context context, Product product){
         ProductDBHelper prodDBH = new ProductDBHelper(context);
         try{
-            prodDBH.updateProduct(this, context);
+            prodDBH.updateProduct(product, context);
             Toast.makeText(context,"Producto modificado ",Toast.LENGTH_SHORT).show();
 
         } catch (Exception e){
@@ -105,38 +105,27 @@ public class Product {
         }
         return product;
     }
-    //deleteproduct
-    public void borrarReg(Context context){
+    //Borra un producto, pasando un producto con el ID
+    public void borrarReg(Context context, Product product){
         ProductDBHelper prodDBH = new ProductDBHelper(context);
         try{
-            prodDBH.deleteProduct(this,context);
+            prodDBH.deleteProduct(product,context);
             Toast.makeText(context,"Registro borrado",Toast.LENGTH_SHORT).show();
-
         } catch (Exception e){
             Toast.makeText(context, "Registro no borrado"+e.getMessage(), Toast.LENGTH_SHORT).show();
-
         }
     }
-    //getall
-    public ArrayList<Product> traerTodo(Context context, Category category){
+    //Retorna una ArrayList con todos los productos de una categoria
+    public ArrayList<Product> traerProductsCategory(Context context, Category category){
         ProductDBHelper prodDBH = new ProductDBHelper(context);
-        ArrayList<Product> products = new ArrayList<>();
-        ArrayList<Product>prodCat=new ArrayList<>();
+        ArrayList<Product> productsDB = new ArrayList<>();
         try{
-            products=prodDBH.getAll(context);
-
-            for(int i=0;i<products.size();i++){
-                if (products.get(i).getCategory().getId()==category.getId()) {
-                    prodCat.add(products.get(i));
-
-                }
-            }
-
+            productsDB = prodDBH.findByCategory(category, context);
             Toast.makeText(context,"Producto encontrado",Toast.LENGTH_SHORT).show();
         } catch (Exception e){
-            Toast.makeText(context, "Producto no encontrado"+e.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Producto no encontrado", Toast.LENGTH_SHORT).show();
         }
-        return prodCat;
+        return productsDB;
     }
 
     }

@@ -13,6 +13,8 @@
     <string name="lista">Lista</string>
     <string name="productos">Productos</string>
 
+    <string name="volver">Volver</string>
+
     <!-- Categorias -->
     <string name="hintCat">Ingresar categoría</string>
     <string name="btnAgregarCat">Agregar</string>

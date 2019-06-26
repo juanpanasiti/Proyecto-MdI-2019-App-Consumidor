@@ -5,13 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".DeleteModifyCategory">
+    tools:context=".DeleteModifyCategory"
+    tools:ignore="Autofill">
 
-    <ImageButton
-        android:layout_width="100dp"
-        android:layout_height="40dp"
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Volver"
+        android:textColor="@color/btnAzul"
+        android:background="@drawable/diseno_button"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:id="@+id/btnDeleteModCat_NewCat"
         android:onClick="onClickDeleteModifyCat"
         />
@@ -22,7 +26,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:id="@+id/categoriaMostrar"/>
 
     <RelativeLayout
@@ -38,7 +42,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/campoCategoriaDelMod"
             android:inputType="text"
-            android:layout_toLeftOf="@id/btnModificarCategoria"
+            android:layout_toStartOf="@id/btnModificarCategoria"
             />
 
         <Button
@@ -48,7 +52,7 @@
             android:textColor="@color/btnAzul"
             android:background="@drawable/diseno_button"
             android:id="@+id/btnModificarCategoria"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:onClick="onClickDeleteModifyCat"
             />
 
@@ -60,7 +64,7 @@
             android:background="@drawable/diseno_button"
             android:id="@+id/btnEliminarCategoria"
             android:layout_below="@id/btnModificarCategoria"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:onClick="onClickDeleteModifyCat"
             />
 
@@ -70,7 +74,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/listProductos"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp">
     </ListView>
 
 </LinearLayout>

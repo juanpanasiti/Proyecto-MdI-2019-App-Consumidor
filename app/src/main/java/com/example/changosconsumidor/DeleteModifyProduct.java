@@ -32,7 +32,7 @@ public class DeleteModifyProduct extends AppCompatActivity {
         para usarlos
          */
         idExtra = getIntent().getIntExtra("id",0);
-        buscarId(idExtra);
+        buscarId(idExtra); //Retorna un producto que lo guardo en la instancia prod, encontrado por el ID
 
         productoMostrar.setText(prod.getName());
         campoProductoMod.setText(prod.getName());
@@ -43,24 +43,27 @@ public class DeleteModifyProduct extends AppCompatActivity {
     }
 
     public void onClickDeleteModifyProd(View view) {
+        Intent intent = null;
         switch (view.getId()) {
             case R.id.btn_de_prod_a_cat:
-                Intent intent = new Intent(DeleteModifyProduct.this, DeleteModifyCategory.class);
-                startActivity(intent);
+                intent = new Intent(DeleteModifyProduct.this, DeleteModifyCategory.class);
                 break;
             case R.id.btnModificarProducto:
                 prod.setName(campoProductoMod.getText().toString());
                 prod.setMark(campoMarcaMod.getText().toString());
                 prod.setContentQuantity((float)Double.parseDouble(campoContentQuantityMod.getText().toString()));
                 prod.setContentUnit(campoContentUnitMod.getText().toString());
-                prod.modificar(DeleteModifyProduct.this);
+                prod.modificar(DeleteModifyProduct.this, prod);
+                intent = new Intent(DeleteModifyProduct.this, DeleteModifyCategory.class);
                 break;
             case R.id.btnEliminarProducto:
-                //prod.borrarReg(DeleteModifyProduct.this, idExtra);
+                prod.borrarReg(DeleteModifyProduct.this, prod);
+                intent = new Intent(DeleteModifyProduct.this, DeleteModifyCategory.class);
                 break;
-
         }
-
+        if (intent != null) {
+            startActivity(intent);
+        }
     }
 
     public void buscarId(int id) {
