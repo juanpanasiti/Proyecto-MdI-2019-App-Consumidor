@@ -24,6 +24,7 @@ public class ProductosActivity extends AppCompatActivity {
     private Spinner spinnerCategorias;
     private EditText campoProducto, campoMarca, campoContentUnit, campoContentQuantity;
     private Product prod = new Product();
+    private Category cat = new Category();
 
     private ArrayList<Category> arrCategorias;
     ArrayList<String> arrCategoriasStr;
@@ -46,7 +47,6 @@ public class ProductosActivity extends AppCompatActivity {
             if (campoProducto.getText().toString().isEmpty()) {
                 Toast.makeText(ProductosActivity.this, "Campo Producto Vacio", Toast.LENGTH_SHORT).show();
             } else {
-                prod = new Product();
                 prod.setName(campoProducto.getText().toString());
                 prod.setCategory(arrCategorias.get(spinnerCategorias.getSelectedItemPosition()));
                 prod.setContentQuantity((float)Double.parseDouble(campoContentQuantity.getText().toString()));
@@ -60,7 +60,7 @@ public class ProductosActivity extends AppCompatActivity {
     }
 
     private void rellenarSpinnerCategorias() {
-        //arrCategorias = prod.traerTodo(ProductosActivity.this);
+        arrCategorias = cat.traerTodo(ProductosActivity.this);
         for(int i = 0; i < arrCategorias.size(); i++) {
             arrCategoriasStr.add(arrCategorias.get(i).getName());
         }
