@@ -21,6 +21,7 @@
         <activity android:name=".Registro" />
         <activity android:name=".PantallaDeMuestra" />
         <activity android:name=".MainRegistro" />
+        <!--suppress AndroidDomInspection -->
         <activity
             android:name=".SplashScreen"
             android:configChanges="orientation|keyboardHidden|screenSize"
