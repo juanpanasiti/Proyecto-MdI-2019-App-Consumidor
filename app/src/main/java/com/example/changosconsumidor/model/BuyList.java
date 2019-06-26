@@ -128,6 +128,7 @@ public class BuyList {
     }
 
     //deleteBuyList
+
     public ArrayList<BuyList> traertodo(Context context, BuyList bl) {
         BuyListDBHelper buyListDBH = new BuyListDBHelper(context);
         ArrayList<BuyList> buyLists = new ArrayList<>();
