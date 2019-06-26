@@ -1,7 +1,6 @@
 package com.example.changosconsumidor;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -20,10 +19,10 @@ public class CategoriasActivity extends AppCompatActivity {
 
     private ListView listaCategorias;
     private EditText et_categoria;
-    private ArrayList<Category> arrCategorias;
-    ArrayList<String> arrCategoriasStr;
+    private ArrayList<Category> arrCategorias = new ArrayList<>();
+    ArrayList<String> arrCategoriasStr = new ArrayList<>();
     ArrayAdapter arrAdp;
-    private Category cat;
+    private Category cat = new Category();
     private CategoryDBHelper admin;
 
     @Override
@@ -65,7 +64,7 @@ public class CategoriasActivity extends AppCompatActivity {
     }
 
     public void llenarListaCategorias() {
-        //arrCategorias = cat.traerTodo(CategoriasActivity.this);
+        arrCategorias = cat.traerTodo(this);
         for(int i = 0; i < arrCategorias.size(); i++) {
             arrCategoriasStr.add(arrCategorias.get(i).getName());
         }

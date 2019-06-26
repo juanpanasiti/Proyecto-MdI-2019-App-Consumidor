@@ -104,36 +104,18 @@ public class Category {
         }
     }
 
-    //deleteBuyList
-
-    public ArrayList<Category> traertodo(Context context, Category cat) {
+    //Retorna un arrayList con todas las categorias
+    public ArrayList<Category> traerTodo(Context context) {
         CategoryDBHelper categoryDBHelper = new CategoryDBHelper(context);
-        ArrayList<BuyList> category = new ArrayList<>();
-        ArrayList<BuyList> catego = new ArrayList<>();
+        ArrayList<Category> category = new ArrayList<>();
         try {
-            category =categoryDBHelper.getAll(context);
-
-            for (int i = 0; i < category.size(); i++) {
-                if (category.get(i).getID() == cat.getId()) {
-                    catego.add(category.get(i));
-
-
-                }
-            }
-            categoryDBHelper.getAll(context);
-            Toast.makeText(context, "Lista de compra Completa", Toast.LENGTH_SHORT).show();
-
+            category = categoryDBHelper.getAll(context);
+            Toast.makeText(context, "Lista de Categorias completa", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
-            Toast.makeText(context, "Error al Cargar Lista de Compras" + e.getMessage(), Toast.LENGTH_SHORT).show();
-
+            Toast.makeText(context, "Error al Cargar Lista de Categorias" + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
-        return catego;
+        return category;
     }
-
-}
-//Getall
-
-
 
 }
 
